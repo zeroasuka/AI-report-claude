@@ -1,0 +1,20 @@
+# 忽略所有檔案與資料夾
+*
+
+# 例外：這幾項要被 git 追蹤
+!.gitignore
+!ai-report/
+!ai-report/**
+
+# 但 ai-report/ 裡面這些不要追蹤
+ai-report/style-preview/
+ai-report/__pycache__/
+ai-report/*.pyc
+ai-report/.DS_Store
+
+# 一般雜物
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.tmp
