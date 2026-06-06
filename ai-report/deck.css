@@ -51,14 +51,11 @@ body.deck-ai .slide.is-active{transform:none}
   transition:width .45s cubic-bezier(.4,0,.2,1)}
 
 /* ========== 右上頁碼 ========== */
-.slide-num{position:absolute;top:28px;right:36px;
-  font:500 12px/1 var(--font-mono);color:var(--text-dim);
-  letter-spacing:.12em;z-index:5}
+/* 使用者要求：所有頁面隱藏頁碼與章節 chip（不要分心元素） */
+.slide-num{display:none!important}
 
 /* ========== 左下：章節指示 ========== */
-.slide-chip{position:absolute;bottom:28px;left:36px;
-  font:600 11px/1 var(--font-mono);color:var(--text-3);
-  letter-spacing:.16em;text-transform:uppercase;z-index:5}
+.slide-chip{display:none!important}
 
 /* ========== Chapter eyebrow（pill 樣式） ========== */
 .eyebrow-c{display:inline-flex;align-items:center;gap:10px;
@@ -628,9 +625,10 @@ body.deck-ai .slide.is-active{transform:none}
 .qr-card .qr-hint{font:500 11px/1.4 var(--font-mono);color:var(--text-3);letter-spacing:.04em}
 
 /* ========== iframe 雙裝置外框（新 P12 用） ========== */
+/* 高度用 vh 隨視窗自動縮放，避免 fullscreen 在小螢幕時切到下方 */
 .browser-frame{position:relative;background:#1d1d1f;border-radius:14px;overflow:hidden;
   border:1px solid var(--border);box-shadow:var(--shadow-lg);
-  height:733px}
+  height:min(62vh,720px)}
 .browser-frame .bf-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;
   background:#2a2a2d;border-bottom:1px solid #3a3a3d}
 .browser-frame .bf-dot{width:11px;height:11px;border-radius:50%}
@@ -643,7 +641,7 @@ body.deck-ai .slide.is-active{transform:none}
 
 .phone-frame{
   --phone-w:402;
-  --phone-h:874;
+  --phone-h:720;
   --phone-scale:.82;
   position:relative;
   width:fit-content;
@@ -659,14 +657,16 @@ body.deck-ai .slide.is-active{transform:none}
 .phone-frame .phone-screen{
   position:relative;
   width:calc(var(--phone-w) * 1px * var(--phone-scale));
-  height:calc(var(--phone-h) * 1px * var(--phone-scale));
+  /* 與 browser-frame 同樣用 vh 適應，避免高 iframe 撐爆畫面 */
+  height:min(calc(62vh - 16px), calc(var(--phone-h) * 1px * var(--phone-scale)));
   border-radius:32px;
   overflow:hidden;
   background:#fff;
 }
 .phone-frame iframe{
   width:calc(var(--phone-w) * 1px);
-  height:calc(var(--phone-h) * 1px);
+  /* iframe 原生高度 = 顯示高度 / scale，這樣縮放後剛好填滿 phone-screen */
+  height:calc(min(calc(62vh - 16px), calc(var(--phone-h) * 1px * var(--phone-scale))) / var(--phone-scale));
   transform:scale(var(--phone-scale));
   transform-origin:top left;
   border:0;
@@ -684,3 +684,217 @@ body.deck-ai .slide.is-active{transform:none}
   .slide-chip{bottom:24px;left:30px}
   .cover-meta{padding:0 72px;bottom:36px}
 }
+
+/* ========== 短螢幕：1366×600 視窗或瀏覽器非全螢幕時 ==========
+   策略：縮 padding + 字體改用 vh 自動依高度縮放 + 覆寫常見大 inline margin
+        + overflow-y:auto 當最後保險（極端情況仍可捲）
+   觸發：viewport 高度 ≤ 720px（典型情境：1366×768 筆電瀏覽器沒全螢幕）*/
+@media (max-height:720px) and (min-width:769px){
+  /* slide padding 砍掉 2/3，但保留左右橫向 padding 給觀感 */
+  body.deck-ai .slide{padding:12px 56px;overflow-y:auto}
+  /* 太短的時候連底部 slide-chip 也壓縮 */
+  .slide-num{top:10px;right:18px;font-size:11px;padding:5px 12px}
+  .slide-chip{bottom:10px;left:18px;font-size:10px;padding:5px 12px}
+  .cover-meta{padding:0 56px;bottom:12px;font-size:11px;letter-spacing:.14em}
+
+  /* 封面雙語標題隨高度縮 + 允許換行 */
+  .cover-zh{font-size:clamp(40px,12vh,108px);white-space:normal;line-height:1.1}
+  .cover-en{font-size:clamp(14px,3vh,32px)}
+  .cover-en::before,.cover-en::after{width:28px;margin:0 12px}
+
+  /* 三大標題類別改 vh 為主，高度短時自動縮 */
+  .hero-title{font-size:clamp(36px,8.5vh,108px);margin-bottom:14px;line-height:1.08}
+  .h2-large{font-size:clamp(26px,6.5vh,68px);margin-bottom:12px;line-height:1.12}
+  .h2-mid{font-size:clamp(22px,4.6vh,46px);margin-bottom:10px;line-height:1.18}
+
+  /* 段落 / lede 縮 */
+  .lede-c{font-size:clamp(13px,2.2vh,22px);line-height:1.55;margin-top:0}
+
+  /* eyebrow + chip 縮 */
+  .eyebrow-c{margin-bottom:14px;padding:5px 12px;font-size:10px;letter-spacing:.13em}
+  .chip{padding:5px 12px;font-size:10px}
+
+  /* 玻璃卡 / KPI / step-card / term-card padding 縮 */
+  .glass-card{padding:18px 20px}
+  .glass-card .num{font-size:30px;margin-bottom:8px}
+  .glass-card h4{font-size:16px;margin-bottom:6px}
+  .glass-card p{font-size:13px;line-height:1.55}
+
+  .kpi-cell{padding:18px 20px}
+  .kpi-cell .v{font-size:clamp(28px,5.5vh,52px);margin-bottom:6px}
+  .kpi-cell .l{font-size:11px;letter-spacing:.12em}
+
+  .step-card{padding:16px 18px}
+  .step-card .step-n{margin-bottom:8px;font-size:11px}
+  .step-card h4{font-size:15px;margin:0 0 6px}
+  .step-card p{font-size:13px}
+
+  .term-card pre{font-size:12px;padding:18px 20px;line-height:1.5}
+  .hermes-card .body{font-size:15px}
+
+  /* P2 大數字 */
+  .stat-big{font-size:clamp(64px,18vh,200px);line-height:1}
+
+  /* P9 大圓 */
+  .hero-circle{width:clamp(220px,52vh,500px)}
+  .hero-circle-title{font-size:clamp(36px,10vh,108px)}
+  .hero-circle-title.combo{font-size:clamp(28px,8vh,86px)}
+
+  /* P15 三個聊天視窗 mock */
+  .chat-window{height:auto;max-height:48vh}
+  .cw-body{padding:10px;font-size:12px}
+  .cw-msg{font-size:11.5px;padding:8px 11px;margin-bottom:8px}
+
+  /* iframe 高度上限再砍一些（vh 已會適應，這裡是額外保險） */
+  .browser-frame{height:min(60vh,560px)}
+  .phone-frame .phone-screen{height:min(calc(60vh - 16px),calc(var(--phone-h) * 1px * var(--phone-scale)))}
+  .phone-frame iframe{height:calc(min(calc(60vh - 16px),calc(var(--phone-h) * 1px * var(--phone-scale))) / var(--phone-scale))}
+
+  /* P24 4 階段水平流程節點 */
+  .flow-pipeline{padding:18px}
+  .flow-node{padding:14px}
+  .flow-node h4{font-size:14px;margin:6px 0 4px}
+  .flow-node p{font-size:12px;line-height:1.5}
+
+  /* P26 結尾逐句字 */
+  .epilogue-list{gap:10px}
+  .epilogue-list li{font-size:clamp(18px,3.6vh,36px);line-height:1.35}
+
+  /* QR 卡 */
+  .qr-card{padding:18px}
+  .qr-card .qr-img{width:140px;height:140px}
+
+  /* 覆寫頁面內常見 inline margin-top（手寫時用慣的數值） */
+  body.deck-ai .slide [style*="margin-top:50px"]{margin-top:16px!important}
+  body.deck-ai .slide [style*="margin-top:48px"]{margin-top:16px!important}
+  body.deck-ai .slide [style*="margin-top:42px"]{margin-top:14px!important}
+  body.deck-ai .slide [style*="margin-top:40px"]{margin-top:14px!important}
+  body.deck-ai .slide [style*="margin-top:38px"]{margin-top:12px!important}
+  body.deck-ai .slide [style*="margin-top:36px"]{margin-top:12px!important}
+  body.deck-ai .slide [style*="margin-top:32px"]{margin-top:12px!important}
+  body.deck-ai .slide [style*="margin-top:30px"]{margin-top:10px!important}
+  body.deck-ai .slide [style*="margin-top:28px"]{margin-top:10px!important}
+  body.deck-ai .slide [style*="margin-top:24px"]{margin-top:8px!important}
+  body.deck-ai .slide [style*="margin-bottom:22px"]{margin-bottom:10px!important}
+  body.deck-ai .slide [style*="margin-bottom:18px"]{margin-bottom:8px!important}
+}
+
+/* ========== 行動版：26 頁變一篇長文，手指捲動即可 ========== */
+@media (max-width:768px){
+  /* --- 1. 解絕對定位，所有 slide 自然堆疊 --- */
+  body.deck-ai .deck{height:auto;overflow:visible}
+  body.deck-ai .slide{
+    position:relative;inset:auto;
+    opacity:1!important;transform:none!important;
+    pointer-events:auto;
+    min-height:100vh;
+    padding:24px 16px 56px;
+    transition:none;
+    overflow:visible;
+    z-index:auto;
+  }
+  body.deck-ai .slide.center{align-items:flex-start}
+
+  /* --- 2. 頂端進度條變細、章節 chrome 縮 --- */
+  .deck-progress{height:1.5px}
+  .slide-num{top:10px;right:12px;font-size:10px}
+  .slide-chip{bottom:14px;left:12px;font-size:9px;letter-spacing:.1em}
+  .cover-meta{position:relative;padding:0;bottom:auto;margin-top:24px;
+    flex-direction:column;gap:6px;text-align:center;align-items:center}
+
+  /* --- 3. 字體縮一階 --- */
+  .cover-en{font-size:clamp(14px,4.5vw,22px);letter-spacing:.12em;white-space:normal}
+  .cover-en::before,.cover-en::after{width:20px;margin:0 8px}
+  .cover-zh{font-size:clamp(28px,9vw,52px);letter-spacing:.04em;white-space:normal;line-height:1.1}
+  .hero-title{font-size:clamp(32px,8vw,52px)}
+  .h2-large{font-size:clamp(26px,7vw,42px)}
+  .h2-mid{font-size:clamp(22px,6vw,34px)}
+  .h2-large,.h2-mid,.hero-title{line-height:1.18}
+  .lede-c{font-size:15px;line-height:1.6}
+
+  /* --- 4. 所有 grid 改單欄（catch inline + class）--- */
+  body.deck-ai .slide [style*="grid-template-columns"]{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+    height:auto!important;
+    align-items:start!important;
+  }
+  .kpi-row,.tool-grid,.flow-h,.steps-h,.flow3-h,.flow-pipeline,.compare-2,
+  .grid.g2,.grid.g3,.grid.g4{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+    height:auto!important;
+  }
+  /* flow-h 的箭頭在直立時改成向下 */
+  .flow-h{display:flex;flex-direction:column}
+  .flow-h .arrow{transform:rotate(90deg);padding:6px 0;align-self:center}
+  .pipe-arrow{transform:rotate(90deg);padding:4px 0;justify-self:center}
+
+  /* --- 5. 重型元件縮放 --- */
+  /* 手機版：DESKTOP iframe 整塊隱藏（看不清楚也不必看），只保留 MOBILE 版示意。
+     P12/P17 的桌面欄是「.browser-frame 的爺爺」div（grid 左欄），
+     用爺爺選擇器抓不到，所以直接隱藏 .browser-frame 本身 + 它上方的 DESKTOP 標籤列。 */
+  body.deck-ai .slide [data-anim="fade-left"]:has(.browser-frame){
+    display:none!important;
+  }
+  /* 同時把 MOBILE 欄置中（原本 grid 1.65fr 1fr 已被改為 1fr，隱藏左欄後右欄獨立） */
+  body.deck-ai .slide [data-anim="fade-right"]:has(.phone-frame){
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  /* iPhone mock 縮小 */
+  body.deck-ai .phone-frame{--phone-scale:.45}
+  body.deck-ai .phone-mock{width:170px!important}
+
+  /* P12/P17 新版頭部 flex（標題 + 「在新分頁開啟」連結）— 手機讓它換行 */
+  body.deck-ai .slide [style*="justify-content:space-between"]{
+    flex-wrap:wrap!important;
+  }
+
+  /* P9 大圓 + orbit-tag 收縮（衛星太亂直接藏） */
+  .hero-circle{width:clamp(220px,72vw,320px)}
+  .hero-circle-title{font-size:clamp(48px,15vw,80px)}
+  .hero-circle-title.combo{font-size:clamp(40px,12vw,64px)}
+  .orbit-tag{display:none}
+
+  /* P21 章扉的浮動紫卡：拿掉絕對定位，改自然流式 */
+  .hermes-card{
+    position:relative!important;
+    top:auto!important;right:auto!important;left:auto!important;
+    width:100%!important;max-width:340px;
+    margin:24px auto 0!important;
+    transform:none!important;
+  }
+
+  /* 終端機卡：縮字 */
+  .term-card pre{font-size:11px;padding:14px 16px;line-height:1.7}
+  .term-card .chrome em{font-size:10px}
+
+  /* 對話視窗 mock（P15 Gemini 三欄）：高度自由、字體可讀 */
+  .chat-window{height:auto;min-height:280px}
+  .flow3-h .col{min-height:auto}
+
+  /* --- 6. P14 三星堆背景：手機字壓在照片上需要更暗 --- */
+  .slide.has-bgphoto .bg-photo{filter:brightness(.14) saturate(1.1)}
+
+  /* --- 7. 影片 / 圖片響應式 --- */
+  .video-wrap{max-width:100%!important;max-height:none!important;aspect-ratio:16/9}
+  .video-wrap video{width:100%!important;height:auto!important;aspect-ratio:16/9}
+  img{max-width:100%;height:auto}
+
+  /* --- 8. 致謝 QR 卡 --- */
+  .qr-card{flex-direction:column;text-align:center;gap:10px;width:100%}
+  .qr-card .qr-img{width:140px;height:140px}
+
+  /* --- 9. 結尾大字逐句：手機沒有 is-active 切換，直接顯示 --- */
+  .slide .epilogue-list li{
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+  .epilogue-list li{font-size:clamp(20px,5.5vw,32px)!important;margin-bottom:14px!important}
+
+  /* --- 10. 統一隱藏桌面用的 chip 浮動效果（避免擋內容） --- */
+  .chips-row{justify-content:center;flex-wrap:wrap}
+}
+

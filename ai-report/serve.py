@@ -22,7 +22,25 @@ import os
 import re
 import sys
 import socket
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer, SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+
+# 快取策略：依副檔名決定 Cache-Control
+# - 媒體 / 字體 / 圖片：可快取 1 小時（重整時瀏覽器直接拿 cache）
+# - HTML / CSS / JS：no-cache（瀏覽器可存但會 revalidate，改檔即時生效）
+# - 其他：no-store
+CACHE_LONG = {".mp4", ".webm", ".mov", ".m4v", ".png", ".jpg", ".jpeg",
+              ".webp", ".gif", ".ico", ".woff2", ".woff", ".ttf", ".otf"}
+CACHE_REVALIDATE = {".html", ".htm", ".css", ".js", ".json"}
+
+
+def cache_header_for(path):
+    ext = os.path.splitext(path)[1].lower()
+    if ext in CACHE_LONG:
+        return "public, max-age=3600"
+    if ext in CACHE_REVALIDATE:
+        return "no-cache"
+    return "no-store"
 
 
 class RangeHandler(SimpleHTTPRequestHandler):
@@ -91,7 +109,7 @@ class RangeHandler(SimpleHTTPRequestHandler):
                 self.send_header("Accept-Ranges", "bytes")
                 self.send_header("Content-Range", f"bytes {start}-{end}/{file_size}")
                 self.send_header("Content-Length", str(length))
-                self.send_header("Cache-Control", "no-store")
+                self.send_header("Cache-Control", cache_header_for(fs_path))
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
 
@@ -113,7 +131,7 @@ class RangeHandler(SimpleHTTPRequestHandler):
             self.send_header("Content-Type", ctype)
             self.send_header("Accept-Ranges", "bytes")
             self.send_header("Content-Length", str(file_size))
-            self.send_header("Cache-Control", "no-store")
+            self.send_header("Cache-Control", cache_header_for(fs_path))
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             try:
@@ -151,7 +169,7 @@ def main():
     # 127.0.0.1 = 只接受本機（私密）
     # 想改回私密，設 HOST=127.0.0.1 環境變數
     host = os.environ.get("HOST", "0.0.0.0")
-    server = HTTPServer((host, port), RangeHandler)
+    server = ThreadingHTTPServer((host, port), RangeHandler)
     public = host in ("0.0.0.0", "")
     print("=" * 60)
     print(f"  📺 Range-aware server")
