@@ -898,3 +898,54 @@ body.deck-ai .slide.is-active{transform:none}
   .chips-row{justify-content:center;flex-wrap:wrap}
 }
 
+/* ============================================================
+   個人簡介頁（P2 · ABOUT）— 樣張 D：右照左資訊
+   class 名沿用 intro-samples.html 樣張 D 原版，渲染結果與預覽完全一致
+   ============================================================ */
+
+/* 個人照通用樣式 */
+.portrait-block{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(168,85,247,.35);
+  box-shadow:
+    0 30px 70px -20px rgba(0,0,0,.7),
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 0 60px -20px rgba(168,85,247,.5);
+  background:#0d1117;
+}
+.portrait-block::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(168,85,247,.15) 0%,transparent 35%,transparent 70%,rgba(96,165,250,.12) 100%);
+  pointer-events:none;mix-blend-mode:overlay;z-index:2;
+}
+.portrait-block img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* 樣張 A：左右分欄（樣張 D 沿用同 grid，再用 .intro-d-grid 反轉欄寬） */
+.intro-a-grid{
+  display:grid;
+  grid-template-columns:.95fr 1.1fr;
+  gap:48px;
+  margin-top:28px;
+  align-items:center;
+}
+.intro-a-grid .portrait-block{aspect-ratio:4/5;max-height:560px}
+
+/* 樣張 D：A 的鏡像 — 資訊在左（1.1fr）、照片在右（.95fr） */
+.intro-d-grid{grid-template-columns:1.1fr .95fr}
+
+/* 條列 bullet row（每張 glass-card 內逐條列點） */
+.bullet-row{display:flex;align-items:flex-start;gap:10px;
+  font-size:14.5px;color:var(--text-2);line-height:1.55;margin-bottom:8px}
+.bullet-row:last-child{margin-bottom:0}
+.bullet-row .ico{font-size:16px;line-height:1.4;flex-shrink:0;width:22px;text-align:center}
+.bullet-row b{color:var(--text-1);font-weight:600}
+
+/* 響應式：< 900px 自動退化為單欄 */
+@media (max-width:900px){
+  .intro-a-grid{grid-template-columns:1fr;gap:24px}
+  .intro-a-grid .portrait-block{aspect-ratio:4/5;max-height:380px;max-width:340px;margin:0 auto}
+}
+
+
