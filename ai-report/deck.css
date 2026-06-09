@@ -1374,34 +1374,34 @@ body.deck-ai .slide.is-active{transform:none}
   .video-wrap+div{font-size:10px!important;gap:2px!important}
 
   /* --- Slides 17 & 22：雙版展示（桌面＋手機 mockup）垂直堆疊 --- */
-  .slide:has(.browser-frame) > div[style*="grid-template-columns"]{
-    grid-template-columns:1fr!important;
+  /* 雙欄容器改 flex 讓 order 生效 */
+  body.deck-ai .slide [style*="grid-template-columns:1.65fr 1fr"]{
+    display:flex!important;
+    flex-direction:column!important;
     gap:20px!important;
   }
-  .slide:has(.browser-frame) > div[style*="grid-template-columns"] > div:last-child{
-    order:-1!important;
+  /* 桌面版：覆蓋 768px 的 display:none，顯示在手機版下方 */
+  body.deck-ai .slide [data-anim="fade-left"]:has(.browser-frame){
+    display:block!important;
+    width:100%!important;
   }
-  .browser-frame{
-    max-height:260px!important;
+  body.deck-ai .slide [data-anim="fade-left"] .browser-frame{
+    max-height:200px!important;
     overflow-x:auto!important;
     -webkit-overflow-scrolling:touch;
-    border-radius:8px!important;
   }
-  .browser-frame iframe{
+  body.deck-ai .slide [data-anim="fade-left"] .browser-frame iframe{
     width:1280px!important;
     height:720px!important;
     transform-origin:top left;
-    transform:scale(0.45);
+    transform:scale(0.35);
   }
-  .phone-frame{
-    max-width:240px!important;
-    margin:0 auto!important;
-  }
-  .phone-screen iframe{
-    width:402px!important;
-    height:720px!important;
-    transform-origin:top left;
-    transform:scale(0.6);
+  /* 手機版：置中 + order:-1 移到上方 */
+  body.deck-ai .slide [data-anim="fade-right"]:has(.phone-frame){
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    order:-1!important;
   }
   .slide:has(.browser-frame) [style*="text-transform:uppercase"]{font-size:10px!important}
   .slide:has(.browser-frame) > div[style*="max-width:1480px"] > div:first-child{
