@@ -815,43 +815,63 @@
       </p>
 
       <div class="wf5 anim-stagger-list">
-        <div class="wf-card">
-          <button class="wf-num" type="button" data-zoom-src="media/layer-01.png" aria-label="放大第 1 層：入口">01</button>
+        <div class="wf-card" role="button" tabindex="0"
+             data-zoom-src="media/layer-01.png"
+             aria-label="放大第 1 層：入口"
+             style="cursor:pointer">
+          <span class="wf-num" style="pointer-events:none">01</span>
           <div class="wf-ico">💬</div>
           <h4>入口</h4>
           <p class="wf-q">從哪裡發任務？</p>
+          <div class="wf-hint">🔍 點擊看詳細</div>
         </div>
         <div class="wf-arrow">→</div>
 
-        <div class="wf-card">
-          <button class="wf-num" type="button" data-zoom-src="media/layer-02.png" aria-label="放大第 2 層：執行環境">02</button>
+        <div class="wf-card" role="button" tabindex="0"
+             data-zoom-src="media/layer-02.png"
+             aria-label="放大第 2 層：執行環境"
+             style="cursor:pointer">
+          <span class="wf-num" style="pointer-events:none">02</span>
           <div class="wf-ico">📦</div>
           <h4>執行環境</h4>
           <p class="wf-q">在哪裡幹活？</p>
+          <div class="wf-hint">🔍 點擊看詳細</div>
         </div>
         <div class="wf-arrow">→</div>
 
-        <div class="wf-card">
-          <button class="wf-num" type="button" data-zoom-src="media/layer-03.png" aria-label="放大第 3 層：上下文">03</button>
+        <div class="wf-card" role="button" tabindex="0"
+             data-zoom-src="media/layer-03.png"
+             aria-label="放大第 3 層：上下文"
+             style="cursor:pointer">
+          <span class="wf-num" style="pointer-events:none">03</span>
           <div class="wf-ico">📄</div>
           <h4>上下文</h4>
           <p class="wf-q">憑什麼做對？</p>
+          <div class="wf-hint">🔍 點擊看詳細</div>
         </div>
         <div class="wf-arrow">→</div>
 
-        <div class="wf-card">
-          <button class="wf-num" type="button" data-zoom-src="media/layer-04.png" aria-label="放大第 4 層：權限邊界">04</button>
+        <div class="wf-card" role="button" tabindex="0"
+             data-zoom-src="media/layer-04.png"
+             aria-label="放大第 4 層：權限邊界"
+             style="cursor:pointer">
+          <span class="wf-num" style="pointer-events:none">04</span>
           <div class="wf-ico">🛡️</div>
           <h4>權限邊界</h4>
           <p class="wf-q">有什麼邊界？</p>
+          <div class="wf-hint">🔍 點擊看詳細</div>
         </div>
         <div class="wf-arrow">→</div>
 
-        <div class="wf-card last">
-          <button class="wf-num" type="button" data-zoom-src="media/layer-05.png" aria-label="放大第 5 層：交付結果">05</button>
+        <div class="wf-card last" role="button" tabindex="0"
+             data-zoom-src="media/layer-05.png"
+             aria-label="放大第 5 層：交付結果"
+             style="cursor:pointer">
+          <span class="wf-num" style="pointer-events:none">05</span>
           <div class="wf-ico">📦</div>
           <h4>交付結果</h4>
           <p class="wf-q">最後交付什麼結果？</p>
+          <div class="wf-hint">🔍 點擊看詳細</div>
         </div>
       </div>
 
@@ -1304,9 +1324,19 @@
 
         <!-- 第 1 欄：跟 Gemini 討論 -->
         <div class="col">
-          <div class="col-head">
-            <span class="n">STEP 01</span>
-            <h4>請 Gemini 幫忙寫規格書<small>聊天視窗 · 不耗 Agent token</small></h4>
+          <div class="col-head" style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap">
+            <span class="n" style="flex-shrink:0">STEP 01</span>
+            <h4 style="flex:1;min-width:0">請 Gemini 幫忙寫規格書<small>聊天視窗 · 不耗 Agent token</small></h4>
+            <button type="button" data-zoom-src="media/spec-sheet.png"
+              aria-label="看完整規格書"
+              style="flex-shrink:0;padding:5px 10px;font-size:11px;
+                border:1px solid rgba(255,255,255,.12);border-radius:8px;
+                background:rgba(255,255,255,.04);color:var(--text-2);
+                cursor:pointer;white-space:nowrap;
+                display:inline-flex;align-items:center;gap:4px;
+                font-family:inherit;line-height:1.2">
+              📄 看完整規格書
+            </button>
           </div>
           <div class="chat-window">
             <div class="cw-head">
@@ -1320,20 +1350,20 @@
             <div class="cw-body">
               <div class="cw-msg user">
                 <div class="label">YOU</div>
-                我 5 月要去成都 8 天，想做一個自己用的旅遊行程 App。請幫我整理成一份完整的<b>需求規格書</b>，要詳細到工程師可以照著做。
+                我 5 月要去成都 8 天，會去四個城市。想做一個手機上能用的旅遊 App，可以編輯行程、看地圖、記帳。請幫我寫一份完整的<b>需求規格書</b>，要詳細到 Codex 可以直接照著做。
               </div>
               <div class="cw-msg ai gemini">
                 <div class="label">GEMINI</div>
-                好的。我先反問你幾個關鍵問題，幫你補齊細節：
-                <br>1️⃣ 行程要不要可<b>編輯</b>（新增 / 修改 / 刪除）？
-                <br>2️⃣ 要不要<b>預算</b>追蹤？分什麼類別？
-                <br>3️⃣ <b>航班</b>資料怎麼處理？要倒數嗎？
-                <br>4️⃣ UI 風格？iOS / Material / 你想要的調性？
-                <br>5️⃣ 技術限制？要單檔 HTML 還是有 framework？
+                好的。我先反問你幾個關鍵問題：
+                <br>1️⃣ 行程要可<b>編輯</b>嗎？需要新增／修改／刪除？
+                <br>2️⃣ 有幾個城市？要用 Tab 切換還是地圖模式？
+                <br>3️⃣ 要<b>預算</b>功能嗎？分幾類？要雙人分帳？
+                <br>4️⃣ 資料要存本地還是同步雲端？
+                <br>5️⃣ UI 風格？iOS 原生感還是自訂主題？
               </div>
               <div class="cw-msg user">
                 <div class="label">YOU</div>
-                全部要可編輯、預算要 4 大類、航班倒數秒級、iOS 熊貓主題（因為去成都）、單一 HTML 純 Vanilla JS。
+                全部可編輯，四個城市用 Tab 切換。預算要分交通／住宿／餐飲／其他，要可以選幣別（人民幣、臺幣、港幣）。iOS 熊貓主題，單一 HTML + localStorage，最好還能 Firebase 同步。
               </div>
             </div>
           </div>

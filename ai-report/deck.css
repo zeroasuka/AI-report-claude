@@ -1275,6 +1275,27 @@ body.deck-ai .slide.is-active{transform:none}
 
 /* ---- 收尾 callout 共用（amber / green 變體）---- */
 .center-callout{margin:28px auto 0;text-align:center}
+
+/* ===== Slide 13：整張卡片可點擊 ===== */
+.wf-card{
+  cursor:pointer!important;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.wf-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(168,85,247,.3);
+}
+.wf-card:active{transform:translateY(-1px)}
+.wf-hint{
+  font:500 9px/1 var(--font-mono);
+  color:var(--accent);
+  opacity:.5;
+  margin-top:5px;
+  text-align:center;
+  letter-spacing:.08em;
+  transition:opacity .2s;
+}
+.wf-card:hover .wf-hint{opacity:1}
 .center-callout.amber{
   border-left:none;border:1px solid rgba(249,115,22,.35);
   background:rgba(249,115,22,.08);border-radius:12px;padding:18px 24px;
@@ -1414,6 +1435,10 @@ body.deck-ai .slide.is-active{transform:none}
     font-size:12px!important;
     padding:7px 14px!important;
   }
+
+  /* --- Slide 13：手機版取消 hover、縮小提示字 --- */
+  .wf-hint{font-size:8px!important}
+  .wf-card:hover{transform:none!important;box-shadow:none!important}
 
   /* --- Slide 27：OpenClaw 截圖手機外框適配 --- */
   .slide:has(.phone-mock) .phone-mock .screen{
