@@ -1284,4 +1284,94 @@ body.deck-ai .slide.is-active{transform:none}
   background:rgba(52,211,153,.08);border-radius:12px;padding:18px 24px;
 }
 
+/* =====================================================================
+   RWD · 平板 ≤1024px
+   ===================================================================== */
+@media (max-width:1024px){
+  .slide > div[style*="max-width"]{
+    max-width:96%!important;
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+  .wf5{gap:4px!important}
+  .wf-card{padding:8px 10px!important}
+  .wf-num{width:32px!important;height:32px!important;font-size:14px!important}
+}
+
+/* =====================================================================
+   RWD · 手機 ≤640px
+   ===================================================================== */
+@media (max-width:640px){
+  /* --- 全局 --- */
+  .slide{padding:60px 16px!important;min-height:100dvh!important}
+  .bg-amb,.bg-grid{background-attachment:scroll!important}
+
+  /* --- 字體細化（補 768px 未涵蓋的 Codex 深潛字體）--- */
+  h2{font-size:22px!important}
+  h2.h2-large{font-size:24px!important}
+  h2.h2-mid{font-size:20px!important}
+  h4{font-size:15px!important}
+  p,.lede-c{font-size:14px!important}
+  .slide-chip,.slide-num{font-size:11px!important}
+
+  /* --- Codex 深潛：4 問卡片改單欄 --- */
+  .codex-q-grid{grid-template-columns:1fr!important;gap:12px!important}
+
+  /* --- Model vs Agent 對照表改單欄 --- */
+  .ma-compare{grid-template-columns:1fr!important;gap:14px!important}
+
+  /* --- 4 種介面：保持 2×2（768px 的 [style*=grid] 不覆蓋 CSS 定義的 grid）--- */
+  .iface-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .iface-card .iface-preview{height:100px!important}
+  .iface-card .iface-meta{padding:8px 10px 10px!important}
+  .iface-card .iface-head h4{font-size:13px!important}
+  .iface-card .iface-tagline{font-size:11px!important}
+
+  /* --- 6 種配料：2 欄 --- */
+  .ingred-grid{grid-template-columns:1fr 1fr!important;gap:10px!important}
+  .ingred-card{padding:12px 14px!important}
+  .ingred-card .ic{font-size:22px!important}
+  .ingred-card .name{font-size:14px!important}
+
+  /* --- 方法可遷移：改單欄 --- */
+  .takeaway-grid-v2{grid-template-columns:1fr!important;gap:20px!important}
+
+  /* --- 五層工作流：水平 grid → 垂直 flex --- */
+  .wf5{display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important}
+  .wf-card{
+    width:100%!important;max-width:320px!important;
+    flex-direction:row!important;align-items:center!important;
+    gap:10px!important;padding:8px 12px!important;
+  }
+  .wf-arrow{transform:rotate(90deg)!important;margin:2px 0!important;font-size:12px!important}
+  .wf-num{width:40px!important;height:40px!important;font-size:14px!important;flex-shrink:0}
+  .wf-ico{font-size:18px!important;width:auto!important;height:auto!important;
+    background:none!important;border:none!important;padding:0!important;margin:0!important}
+  .wf-card h4{font-size:13px!important;margin:0!important}
+  .wf-q{font-size:12px!important;margin:0!important}
+  .wf-timeline{display:none!important}
+  .wf-bottom-callout{font-size:11px!important;padding:8px 12px!important;gap:8px!important}
+  .wf-summary{font-size:10px!important;flex-wrap:wrap!important;justify-content:center!important;gap:2px!important}
+
+  /* --- 行動呼籲：三欄改單欄，卡片橫向排列 --- */
+  .action-grid{grid-template-columns:1fr!important;gap:16px!important;
+    max-width:360px!important;margin:20px auto 0!important}
+  .action-grid .glass-card{
+    flex-direction:row!important;text-align:left!important;
+    gap:12px!important;align-items:center!important;padding:16px!important;
+  }
+  .action-grid .glass-card h4{font-size:14px!important;margin-bottom:2px!important}
+  .action-grid .glass-card p{font-size:12px!important}
+  .action-grid .glass-card > div:first-child{font-size:28px!important;margin-bottom:0!important;flex-shrink:0}
+
+  /* --- Lightbox 手機優化 --- */
+  .lightbox{padding:10px!important}
+  #lightboxImg{max-width:95vw!important;max-height:80vh!important;object-fit:contain!important}
+  .lb-close{width:44px!important;height:44px!important;font-size:24px!important;top:6px!important;right:6px!important}
+  .lb-hint{font-size:11px!important;bottom:10px!important}
+
+  /* --- 影片補強 --- */
+  .video-wrap+div{font-size:10px!important;gap:2px!important}
+}
+
 
