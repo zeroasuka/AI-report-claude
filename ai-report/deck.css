@@ -1414,6 +1414,15 @@ body.deck-ai .slide.is-active{transform:none}
     font-size:12px!important;
     padding:7px 14px!important;
   }
+
+  /* --- Slide 27：OpenClaw 截圖手機外框適配 --- */
+  .slide:has(.phone-mock) .phone-mock .screen{
+    height:auto!important;
+    aspect-ratio:9/19.5!important;
+  }
+  .slide:has(.phone-mock) .phone-mock .screen img{
+    object-fit:contain!important;
+  }
 }
 
 
