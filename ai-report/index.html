@@ -580,7 +580,7 @@
           <ul>
             <li>讀檔、改檔、<b>跑指令</b>、調工具</li>
             <li>有權限邊界、有交付產物</li>
-            <li>換工具 ＝ 換包裝，配料盒一樣</li>
+            <li>換工具 ＝ 換包裝，模組一樣</li>
             <li>例：Codex、Claude Code、OpenClaw</li>
           </ul>
         </div>
@@ -708,62 +708,31 @@
 
       • 重點：手機 App 不是在手機上跑 Codex，是遠端控制
       • 桌面 App / CLI / IDE 共享 MCP 設定，可同步 thread
-      → P14 6 種配料
+      → P14 6 種核心模組
     </div>
   </section>
 
 
-  <!-- ============ P14 · CH 03.5 · 6 種配料 ============ -->
+  <!-- ============ P14 · CH 03.5 · 6 種核心模組 ============ -->
   <section class="slide">
     <div class="bg-amb"></div>
     <div class="bg-grid"></div>
     <div class="slide-num">12 / 32</div>
-    <div class="slide-chip">CH 03.5 · 配料盒</div>
+    <div class="slide-chip">CH 03.5 · 核心模組</div>
 
     <div style="max-width:1400px;margin:0 auto;width:100%">
-      <div class="eyebrow-c green" data-anim="fade-down"><span class="dot"></span>INGREDIENTS · 6 種配料</div>
+      <div class="eyebrow-c green" data-anim="fade-down"><span class="dot"></span>MODULES · 6 種核心模組</div>
 
       <h2 class="h2-mid" data-anim="rise-in" style="margin-bottom:10px">
         Skill、MCP、AGENTS.md…<span class="gradient-text">到底是什麼？</span>
       </h2>
       <p class="lede-c" data-anim="fade-up" style="margin-bottom:0">
-        這些名詞不是並列功能，而是 Agent <b style="color:var(--text-1)">圍繞 Model 的 6 種配料</b>。
+        這些名詞不是並列功能，而是 Agent <b style="color:var(--text-1)">圍繞 Model 的 6 種核心模組</b>。
       </p>
 
       <div class="ingred-grid anim-stagger-list">
 
-        <div class="ingred-card">
-          <span class="ic">🧩</span>
-          <div class="name">Skill <small>專業領域包</small></div>
-          <div class="role">DOMAIN PACKAGE</div>
-          <p>把規矩、範例、API 慣例包成一個資料夾，Agent 遇到相關情境就會自動照做。</p>
-          <div class="use">💡 <b>用法</b>：寫一份 Code Review Skill，下次開 PR 就自動照規範檢查。</div>
-        </div>
-
-        <div class="ingred-card">
-          <span class="ic">🔌</span>
-          <div class="name">MCP <small>Model Context Protocol</small></div>
-          <div class="role">EXTERNAL SOCKET</div>
-          <p>接外部工具的<b style="color:var(--text-1)">插座規格</b>。Slack、Notion、Drive、自家 DB 都能接上；4 種介面共用同一份設定。</p>
-          <div class="use">💡 <b>用法</b>：裝 Slack MCP，Codex 能讀你的訊息、發通知。</div>
-        </div>
-
-        <div class="ingred-card">
-          <span class="ic">📄</span>
-          <div class="name">Markdown <small>文件</small></div>
-          <div class="role">SPEC / NOTES</div>
-          <p>給 Agent 看的<b style="color:var(--text-1)">說明書</b>。需求、規範、TODO 寫成 <code style="background:rgba(0,0,0,.4);padding:1px 5px;border-radius:4px;font-size:11px;color:#c084fc">.md</code>，Agent 自己讀。</p>
-          <div class="use">💡 <b>用法</b>：寫 SPEC.md 描功能、STYLE.md 描規範，動手前 Codex 會掃過。</div>
-        </div>
-
-        <div class="ingred-card">
-          <span class="ic">🗃️</span>
-          <div class="name">資料庫 <small>Database</small></div>
-          <div class="role">LONG-TERM MEMORY</div>
-          <p>給 Agent 的<b style="color:var(--text-1)">長期記憶</b>。SQL / 向量 DB / 知識庫，比塞進對話框更可靠。</p>
-          <div class="use">💡 <b>用法</b>：把過去 PR、issue embed 進向量 DB，Codex 用 MCP 查。</div>
-        </div>
-
+        <!-- ① Agent — 核心主體 -->
         <div class="ingred-card">
           <span class="ic">🤖</span>
           <div class="name">Agent <small>智能體</small></div>
@@ -772,12 +741,49 @@
           <div class="use">💡 <b>用法</b>：Codex 本身就是一個 Agent；Claude Code、OpenClaw、Hermes 也是。</div>
         </div>
 
+        <!-- ② Skill — 能力 -->
+        <div class="ingred-card">
+          <span class="ic">🧩</span>
+          <div class="name">Skill <small>專業領域包</small></div>
+          <div class="role">DOMAIN PACKAGE</div>
+          <p>把規矩、範例、API 慣例包成一個資料夾，Agent 遇到相關情境就會自動照做。</p>
+          <div class="use">💡 <b>用法</b>：寫一份 Code Review Skill，下次開 PR 就自動照規範檢查。</div>
+        </div>
+
+        <!-- ③ Markdown — 輸入文件 -->
+        <div class="ingred-card">
+          <span class="ic">📄</span>
+          <div class="name">Markdown <small>文件</small></div>
+          <div class="role">SPEC / NOTES</div>
+          <p>給 Agent 看的<b style="color:var(--text-1)">說明書</b>。需求、規範、TODO 寫成 <code style="background:rgba(0,0,0,.4);padding:1px 5px;border-radius:4px;font-size:11px;color:#c084fc">.md</code>，Agent 自己讀。</p>
+          <div class="use">💡 <b>用法</b>：寫 SPEC.md 描功能、STYLE.md 描規範，動手前 Codex 會掃過。</div>
+        </div>
+
+        <!-- ④ AGENTS.md — 專案規範 -->
         <div class="ingred-card">
           <span class="ic">📋</span>
           <div class="name">AGENTS.md <small>專案規範</small></div>
           <div class="role">PROJECT RULES</div>
           <p>放在<b style="color:var(--text-1)">專案根目錄</b>，告訴 Agent 這個 repo 的風格、慣例、不能碰的檔。</p>
           <div class="use">💡 <b>用法</b>：寫好它，4 種介面進這個專案都會自動讀，行為一致。</div>
+        </div>
+
+        <!-- ⑤ 資料庫 — 長期記憶 -->
+        <div class="ingred-card">
+          <span class="ic">🗃️</span>
+          <div class="name">資料庫 <small>Database</small></div>
+          <div class="role">LONG-TERM MEMORY</div>
+          <p>給 Agent 的<b style="color:var(--text-1)">長期記憶</b>。SQL / 向量 DB / 知識庫，比塞進對話框更可靠。</p>
+          <div class="use">💡 <b>用法</b>：把過去 PR、issue embed 進向量 DB，Codex 用 MCP 查。</div>
+        </div>
+
+        <!-- ⑥ MCP — 對外連接 -->
+        <div class="ingred-card">
+          <span class="ic">🔌</span>
+          <div class="name">MCP <small>Model Context Protocol</small></div>
+          <div class="role">EXTERNAL SOCKET</div>
+          <p>接外部工具的<b style="color:var(--text-1)">插座規格</b>。Slack、Notion、Drive、自家 DB 都能接上；4 種介面共用同一份設定。</p>
+          <div class="use">💡 <b>用法</b>：裝 Slack MCP，Codex 能讀你的訊息、發通知。</div>
         </div>
 
       </div>
@@ -790,8 +796,8 @@
     <div class="notes">
       ⏱ 2m · 名詞解釋
 
-      • 6 個常被混淆的名詞：Skill、MCP、Markdown、DB、Agent、AGENTS.md
-      • 重點：工具換 = 包裝換，配料盒還是這些
+      • 6 個常被混淆的名詞：Agent、Skill、Markdown、AGENTS.md、資料庫、MCP
+      • 重點：工具換 = 包裝換，模組還是這些
       → P15 五層工作流
     </div>
   </section>
@@ -898,7 +904,7 @@
 
       <div class="wf-bottom-callout" data-anim="zoom-pop">
         <div class="bulb">💡</div>
-        <div>把 P14 的 6 種配料串成這<b>五個步驟</b>，所有 Agent 工具都跑這條鏈路。</div>
+        <div>把前面 6 種核心模組串成這<b>五個步驟</b>，所有 Agent 工具都跑這條鏈路。</div>
       </div>
     </div>
 
@@ -906,7 +912,7 @@
       ⏱ 2m · 五層工作流
 
       • 五個問題：入口 / 執行環境 / 上下文 / 權限邊界 / 交付結果
-      • 把 P14 的 6 種配料串成這 5 個步驟
+      • 把前面 6 種核心模組串成這 5 個步驟
       • 點編號圓圈可放大對應層細節圖
       → P16 方法可以搬走
     </div>
@@ -936,7 +942,7 @@
             <div class="n">01</div>
             <div>
               <div class="t">Model ≠ Agent</div>
-              <div class="sub">模型是腦，Agent 是腦＋配料</div>
+              <div class="sub">模型是腦，Agent 是腦＋模組</div>
             </div>
           </div>
           <div class="ti">
@@ -949,8 +955,8 @@
           <div class="ti">
             <div class="n">03</div>
             <div>
-              <div class="t">6 種配料</div>
-              <div class="sub">Skill / MCP / Markdown / DB / Agent / AGENTS.md</div>
+              <div class="t">6 種核心模組</div>
+              <div class="sub">Agent / Skill / Markdown / AGENTS.md / 資料庫 / MCP</div>
             </div>
           </div>
           <div class="ti">
@@ -971,7 +977,7 @@
 
         <div data-anim="fade-right">
           <div style="font:600 11px/1 var(--font-mono);color:#fb923c;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px">
-            ▸ 同一套配料盒，不同包裝
+            ▸ 同一套模組，不同包裝
           </div>
           <div class="chips-row" style="gap:10px;flex-direction:column;align-items:stretch">
             <span class="chip purple" style="justify-content:flex-start;padding:14px 20px;font-size:15px">⚡ Claude Code <small style="margin-left:auto;font:500 11px/1 var(--font-mono);opacity:.7;letter-spacing:.08em">Anthropic 出的 Agent</small></span>
@@ -980,7 +986,7 @@
             <span class="chip amber" style="justify-content:flex-start;padding:14px 20px;font-size:15px">✨ … 其他 Agent 工具 <small style="margin-left:auto;font:500 11px/1 var(--font-mono);opacity:.7;letter-spacing:.08em">新名詞會冒，但位置不變</small></span>
           </div>
           <p style="margin:18px 4px 0;font-size:13px;color:var(--text-3);line-height:1.6">
-            這些工具都共用同一套配料盒、跑同一條五層工作流。
+            這些工具都共用同一套核心模組、跑同一條五層工作流。
             學會 Codex 後，看任何 Agent 工具的速度都會變很快。
           </p>
         </div>
@@ -995,8 +1001,8 @@
     <div class="notes">
       ⏱ 1m · 收尾 + 銜接
 
-      • 5 件事一條條收：Model≠Agent / 4 介面 / 6 配料 / 五層工作流 / 方法遷移
-      • 強調「同配料盒，不同包裝」
+      • 5 件事一條條收：Model≠Agent / 4 介面 / 6 模組 / 五層工作流 / 方法遷移
+      • 強調「同模組，不同包裝」
       • 過渡：接下來看真正案例
       → P17 CH04 Vibe Coding
     </div>
@@ -2029,12 +2035,10 @@
       <div class="eyebrow-c" data-anim="fade-down"><span class="dot"></span>給你的最後一段話</div>
 
       <ol class="epilogue-list" style="text-align:left">
-        <li>不要被想像中的困難擊倒。</li>
-        <li>任何引起你興趣的事——不需要先搞懂才開始。</li>
-        <li>打開電腦，張開嘴，踏出<b style="color:var(--text-1)">第一步</b>。</li>
-        <li>過程中自然就會學會，<br>就像小孩學走路一樣。</li>
-        <li>不需要先弄懂走路需要什麼力學原理，<br>才敢跨出那一步。</li>
-        <li>踏出你的第一步。</li>
+        <li>不需要先學會，才能開始。</li>
+        <li>打開電腦，張開嘴。</li>
+        <li>剩下的，路上學。</li>
+        <li>踏出你的<b style="color:var(--text-1)">第一步</b>。</li>
       </ol>
     </div>
 
