@@ -1375,51 +1375,19 @@
             <span class="n" style="color:#5fe3a8;background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.3)">STEP 02</span>
             <h4>Gemini 產出 Markdown 規格書<small>2,500 字 · 工程師看著就能做</small></h4>
           </div>
-          <div class="chat-window">
-            <div class="cw-head">
-              <div class="avatar gemini">G</div>
-              <div class="meta">
-                <div class="name">Gemini 2.5 Pro</div>
-                <div class="sub">● 已生成規格書</div>
-              </div>
-              <div class="traffic"><span></span><span></span><span></span></div>
-            </div>
-            <div class="cw-body">
-              <div class="cw-msg ai gemini" style="max-width:100%;flex:1">
-                <div class="label">GEMINI · 規格書</div>
-                好的，以下是完整版：
-                <div class="md"># 智慧旅遊行程 App
-
-<b>## 核心定位</b>
-可編輯、動態更新的旅遊助手
-不是靜態行程表
-
-<b>## 核心功能</b>
-1. 行程顯示（Tab / Day）
-2. ✏️ 行程可編輯（新增/修改/刪除）
-3. 📍 今天該去哪 · 自動判斷
-4. ⏱ 倒數系統 · setInterval
-5. 地圖導航 · Google Maps
-6. 🐼 AI 圖片 · 景點生成
-7. 💰 預算頁 · 四大類總計
-8. ✈️ 航班頁 · 卡片資訊
-
-<b>## UI / UX</b>
-熊貓主題（黑/白/竹綠）
-iOS + Apple Maps 風格
-卡片圓角 + 柔和陰影
-
-<b>## 技術限制</b>
-<em>單一 HTML 檔案</em>
-<em>Vanilla JS · 無框架</em>
-<em>localStorage 保存</em>
-
-<b>## 程式設計要求</b>
-模組化函式：
-renderSchedule()
-addSchedule() / editSchedule()
-deleteSchedule()
-getNextEvent() / updateCountdown()</div>
+          <div class="cw-body" style="padding:0;background:transparent">
+            <div style="position:relative;cursor:pointer"
+                 data-zoom-src="media/spec-sheet.png"
+                 aria-label="點擊放大檢視規格書">
+              <img src="media/spec-sheet.png"
+                   alt="Markdown 規格書"
+                   style="width:100%;height:auto;display:block;border-radius:0 0 12px 12px">
+              <div style="position:absolute;bottom:10px;right:12px;
+                          background:rgba(0,0,0,.6);color:#fff;
+                          padding:4px 10px;border-radius:6px;
+                          font:500 10px/1 var(--font-mono);
+                          backdrop-filter:blur(4px)">
+                🔍 點擊放大
               </div>
             </div>
           </div>
@@ -2297,12 +2265,14 @@ getNextEvent() / updateCountdown()</div>
 
 <script>
 /* Lightbox：.iface-preview 點下去放大原圖，[data-zoom-src] 點下去放大指定圖
-   ESC、點背景、點 × 都能關；開啟時阻擋 ← → 傳到 runtime.js 翻頁 */
+   ESC、點背景、點 × 都能關；開啟時阻擋 ← → 傳到 runtime.js 翻頁
+   長圖模式：預設 fit 視窗寬度，點圖切換原尺寸（zoom-full） */
 (function(){
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightboxImg');
   const lbClose = lb.querySelector('.lb-close');
   let isOpen = false;
+  let isZoomed = false;
 
   function open(src, alt){
     lbImg.src = src;
@@ -2310,13 +2280,31 @@ getNextEvent() / updateCountdown()</div>
     lb.classList.add('is-open');
     lb.setAttribute('aria-hidden','false');
     isOpen = true;
-    lb.querySelector('.lb-hint').textContent =
-      window.innerWidth <= 640 ? '點擊背景關閉' : '按 ESC 或點背景關閉';
+    isZoomed = false;
+    lb.classList.remove('zoom-full');
+    lb.classList.add('zoom-fit');
+    lb.style.cursor = 'zoom-in';
+    lb.scrollTop = 0;
+
+    lb.querySelector('.lb-hint').textContent = window.innerWidth <= 640
+      ? '點擊圖片放大 · 滾動瀏覽'
+      : '點擊切換原尺寸 · 按 ESC 關閉';
+
+    lbImg.onclick = function(e){
+      e.stopPropagation();
+      isZoomed = !isZoomed;
+      lb.classList.toggle('zoom-full', isZoomed);
+      lb.classList.toggle('zoom-fit', !isZoomed);
+      lb.style.cursor = isZoomed ? 'zoom-out' : 'zoom-in';
+      if (isZoomed) lb.scrollTop = 0;
+    };
   }
   function close(){
-    lb.classList.remove('is-open');
+    lb.classList.remove('is-open','zoom-fit','zoom-full');
     lb.setAttribute('aria-hidden','true');
+    lb.style.cursor = '';
     isOpen = false;
+    isZoomed = false;
     setTimeout(()=>{ if(!isOpen) lbImg.src=''; }, 250);
   }
 
