@@ -856,6 +856,15 @@ body.deck-ai .slide.is-active{transform:none}
   .hero-circle-title{font-size:clamp(48px,15vw,80px)}
   .hero-circle-title.combo{font-size:clamp(40px,12vw,64px)}
   .orbit-tag{font-size:9px;padding:3px 7px;white-space:nowrap}
+  /* 拉近衛星標籤距離，避免溢出 */
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(1){right:-14%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(2){right:-32%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(3){right:-34%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(4){right:-14%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(5){left:-14%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(6){left:-30%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(7){left:-32%!important}
+  .hero-circle.codex-hero > .orbit-tag.combo:nth-of-type(8){left:-14%!important}
 
   /* 手機版不跑進場動畫，直接顯示所有 stagger 列表與 data-anim 元素 */
   .anim-stagger-list > *{opacity:1!important;animation:none!important;transform:none!important}
