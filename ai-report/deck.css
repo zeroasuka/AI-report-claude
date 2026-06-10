@@ -698,7 +698,7 @@ body.deck-ai .slide.is-active{transform:none}
   .cover-meta{padding:0 56px;bottom:12px;font-size:11px;letter-spacing:.14em}
 
   /* 封面雙語標題隨高度縮 + 允許換行 */
-  .cover-zh{font-size:clamp(40px,12vh,108px);white-space:normal;line-height:1.1}
+  .cover-zh{font-size:clamp(40px,12vh,108px);white-space:nowrap;line-height:1.1}
   .cover-en{font-size:clamp(14px,3vh,32px)}
   .cover-en::before,.cover-en::after{width:28px;margin:0 12px}
 
@@ -803,9 +803,9 @@ body.deck-ai .slide.is-active{transform:none}
     flex-direction:column;gap:6px;text-align:center;align-items:center}
 
   /* --- 3. 字體縮一階 --- */
-  .cover-en{font-size:clamp(14px,4.5vw,22px);letter-spacing:.12em;white-space:normal}
-  .cover-en::before,.cover-en::after{width:20px;margin:0 8px}
-  .cover-zh{font-size:clamp(28px,9vw,52px);letter-spacing:.04em;white-space:normal;line-height:1.1}
+  .cover-en{font-size:clamp(14px,4.5vw,22px);letter-spacing:.12em;white-space:normal;text-align:center!important}
+  .cover-en::before,.cover-en::after{display:none!important}
+  .cover-zh{font-size:clamp(26px,9vw,50px);letter-spacing:.04em;white-space:nowrap;line-height:1.1}
   .hero-title{font-size:clamp(32px,8vw,52px)}
   .h2-large{font-size:clamp(26px,7vw,42px)}
   .h2-mid{font-size:clamp(22px,6vw,34px)}
@@ -1353,12 +1353,15 @@ body.deck-ai .slide.is-active{transform:none}
   /* --- Model vs Agent 對照表改單欄 --- */
   .ma-compare{grid-template-columns:1fr!important;gap:14px!important}
 
-  /* --- 4 種介面：保持 2×2（768px 的 [style*=grid] 不覆蓋 CSS 定義的 grid）--- */
-  .iface-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
-  .iface-card .iface-preview{height:100px!important}
-  .iface-card .iface-meta{padding:8px 10px 10px!important}
-  .iface-card .iface-head h4{font-size:13px!important}
-  .iface-card .iface-tagline{font-size:11px!important}
+  /* --- 4 種介面：手機改單欄，卡片改橫向排列 --- */
+  .iface-grid{grid-template-columns:1fr!important;gap:10px!important}
+  .iface-card{display:flex!important;flex-direction:row!important;gap:12px!important;align-items:stretch!important}
+  .iface-card .iface-preview{width:100px!important;min-height:80px!important;flex-shrink:0!important;border-radius:10px!important}
+  .iface-card .iface-meta{padding:8px 0 8px 0!important;flex:1!important;min-width:0!important}
+  .iface-card .iface-head h4{font-size:14px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .iface-card .iface-tagline{font-size:12px!important;margin:4px 0!important}
+  .iface-card .iface-tags{gap:4px!important}
+  .iface-card .iface-tags span{font-size:10px!important;padding:2px 7px!important}
 
   /* --- 6 種配料：2 欄 --- */
   .ingred-grid{grid-template-columns:1fr 1fr!important;gap:10px!important}

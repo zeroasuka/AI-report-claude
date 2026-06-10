@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>prompt-codex.md</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#1e1e2e;
+  color:#cdd6f4;
+  font-family:'Consolas','Courier New','Lucida Console',monospace;
+  font-size:14px;
+  line-height:1.65;
+  display:flex;
+  justify-content:center;
+  padding:30px;
+}
+.container{
+  max-width:780px;
+  width:100%;
+  background:#181825;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* Title bar - VS Code style dark */
+.titlebar{
+  background:#2a2a3c;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:6px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  color:#a6adc8;
+  user-select:none;
+}
+.titlebar .dots{display:flex;gap:6px}
+.titlebar .dot{width:10px;height:10px;border-radius:50%}
+.titlebar .dot.r{background:#f38ba8}
+.titlebar .dot.y{background:#f9e2af}
+.titlebar .dot.g{background:#a6e3a1}
+.titlebar .fn{
+  flex:1;font-family:'Segoe UI','Microsoft JhengHei',sans-serif;
+  color:#cdd6f4;font-size:12px;
+}
+.titlebar .fn .ext{color:rgba(255,255,255,.3)}
+
+.editor{
+  padding:18px 22px 22px;
+  min-height:500px;
+}
+
+.md{}
+.md .h1{font-size:19px;font-weight:700;margin:16px 0 8px;color:#cba6f7}
+.md .h2{font-size:15px;font-weight:600;margin:10px 0 5px;color:#89b4fa}
+.md .p{margin:3px 0;color:#bac2de}
+.md .p .hl{font-weight:600;color:#f9e2af}
+.md .p .cm{color:#6c7086}
+.md ul,.md ol{margin:3px 0;padding-left:22px;color:#bac2de}
+.md li{margin:2px 0}
+.md li .hl{color:#f9e2af;font-weight:600}
+.md .divider{margin:8px 0;border:none;border-top:1px solid rgba(255,255,255,.05)}
+.md .code-block{
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.04);
+  border-radius:4px;
+  padding:8px 12px;margin:5px 0;
+  font-size:13px;line-height:1.45;
+  color:#a6e3a1;
+}
+.md .code-block .cm{color:#6c7086}
+.md .code-block .hl{color:#89b4fa}
+.md .blockquote{
+  border-left:3px solid #cba6f7;
+  padding:6px 12px;margin:6px 0;
+  background:rgba(203,166,247,.05);
+  font-size:13px;
+  color:#a6adc8;
+}
+.md .blockquote .hl{color:#f9e2af;font-weight:600}
+
+.cursor-line{
+  display:inline-block;
+  width:2px;height:15px;
+  background:#cdd6f4;
+  animation:blink 1s step-end infinite;
+  vertical-align:text-bottom;margin-left:1px;
+}
+@keyframes blink{50%{opacity:0}}
+
+.statusbar{
+  background:#2a2a3c;
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:3px 14px;
+  display:flex;justify-content:space-between;
+  font-size:11px;color:#6c7086;
+  font-family:'Segoe UI',sans-serif;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="titlebar">
+  <div class="dots">
+    <span class="dot r"></span>
+    <span class="dot y"></span>
+    <span class="dot g"></span>
+  </div>
+  <span class="fn">prompt-codex<span class="ext">.md</span></span>
+</div>
+
+<div class="editor">
+
+<div class="md">
+
+<div class="p" style="margin-bottom:4px">你是一名資深前端工程師 + UX 設計師，</div>
+<div class="p" style="margin-bottom:4px">專門打造 iPhone 等級體驗的旅行 App。</div>
+<div class="p" style="margin-bottom:8px">請生成一個「單一 HTML 檔案」的智慧旅遊行程網站。</div>
+
+<hr class="divider">
+
+<div class="h2"><span class="cm">##</span> 技術限制</div>
+<div class="code-block">
+<span class="cm">/* 單一 HTML 檔案 */</span>
+<span class="cm">/* Vanilla JS · 無框架 */</span>
+<span class="cm">/* Tailwind CSS (Play CDN) 或純 CSS */</span>
+<span class="cm">/* localStorage + Firebase 雙儲存 */</span>
+Mobile-first 設計
+可離線開啟
+</div>
+
+<hr class="divider">
+
+<div class="h2"><span class="cm">##</span> 核心功能</div>
+
+<ol>
+  <li><span class="hl">行程頁</span> — 城市 Tab 切換（香港／成都／澳門—珠海）、Day 標籤切換（Day 1~8）、時間軸卡片（時間／標題／圖片／地圖連結）、可編輯／刪除／標記完成</li>
+  <li><span class="hl">今日頁</span> — 自動判斷當天日期，顯示今日行程 + 倒數計時</li>
+  <li><span class="hl">清單頁</span> — 必吃美食／備註雜項自由新增，可勾選完成</li>
+  <li><span class="hl">預算頁</span> — 雙人記帳（Andy + Mina），支援多幣別（CNY / TWD / HKD / MOP），分攤方式（全額／均分），依幣別彙總</li>
+  <li><span class="hl">航班頁</span> — 卡片式顯示去程／回程航班號、航站、起降時間</li>
+  <li><span class="hl">地圖導航</span> — 點擊景點名稱自動喚起 Google Maps 或高德地圖</li>
+  <li><span class="hl">AI 圖片</span> — 每個景點自動生成配圖（Image 2），prompt 風格：旅遊攝影 + cinematic lighting</li>
+</ol>
+
+<hr class="divider">
+
+<div class="h2"><span class="cm">##</span> UI / UX 要求</div>
+
+<div class="p"><span class="hl">🐼 主題配色</span> 黑／白／竹綠（<span class="cm">#1a1a1a / #ffffff / #5fe3a8</span>）</div>
+<div class="p"><span class="hl">風格</span> iOS 17 原生 App · 毛玻璃背景 · 圓角卡片 · 柔和陰影</div>
+<div class="p"><span class="hl">行動優化</span> iPhone 優先 · 大按鈕 · Dark Mode</div>
+<div class="p"><span class="hl">動效</span> 卡片進場動畫 · Tab 平滑切換 · 倒數數字滾動</div>
+<div class="p"><span class="hl">導航</span> 底部 5 個 Tab（行程／今日／清單／記帳／航班）</div>
+
+<hr class="divider">
+
+<div class="h2"><span class="cm">##</span> 資料結構</div>
+<div class="code-block">
+<span class="hl">itineraryItem</span> = {<br>
+&nbsp;&nbsp;id, date, time, title, city,<br>
+&nbsp;&nbsp;done, imagePrompt, note<br>
+}<br><br>
+<span class="hl">budgetItem</span> = {<br>
+&nbsp;&nbsp;id, name, amount, currency,<br>
+&nbsp;&nbsp;payer, splitType<br>
+}
+</div>
+
+<hr class="divider">
+
+<div class="h2"><span class="cm">##</span> 程式設計要求</div>
+<div class="code-block">
+<span class="cm">// 模組化函式結構</span>
+renderSchedule()&nbsp;&nbsp;&nbsp;&nbsp;addSchedule()<br>
+editSchedule()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deleteSchedule()<br>
+getNextEvent()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updateCountdown()<br>
+loadFromStorage()&nbsp;&nbsp;saveToStorage()<br>
+syncToFirebase()
+</div>
+
+<hr class="divider">
+
+<div class="blockquote">
+<span class="hl">✅ 以上需求，請生成完整可執行的 HTML 檔案。</span><br>
+可直接在 iPhone 上打開使用，支援離線瀏覽、行程編輯、地圖導航、雙人記帳、Firebase 雲端同步。
+</div>
+
+</div>
+
+<div class="p" style="margin-top:20px"><span class="cursor-line"></span></div>
+
+</div>
+
+<div class="statusbar">
+  <span>Ln 1, Col 1</span>
+  <span>UTF-8 | CRLF | Markdown</span>
+</div>
+
+</div>
+</body>
+</html>
