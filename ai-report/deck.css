@@ -851,11 +851,15 @@ body.deck-ai .slide.is-active{transform:none}
     flex-wrap:wrap!important;
   }
 
-  /* P9 大圓 + orbit-tag 收縮（衛星太亂直接藏） */
+  /* P10 大圓 + orbit-tag 收縮 */
   .hero-circle{width:clamp(220px,72vw,320px)}
   .hero-circle-title{font-size:clamp(48px,15vw,80px)}
   .hero-circle-title.combo{font-size:clamp(40px,12vw,64px)}
-  .orbit-tag{display:none}
+  .orbit-tag{font-size:9px;padding:3px 7px;white-space:nowrap}
+
+  /* 手機版不跑進場動畫，直接顯示所有 stagger 列表與 data-anim 元素 */
+  .anim-stagger-list > *{opacity:1!important;animation:none!important;transform:none!important}
+  [data-anim]{opacity:1!important;animation:none!important;transform:none!important;filter:none!important}
 
   /* P21 章扉的浮動紫卡：拿掉絕對定位，改自然流式 */
   .hermes-card{

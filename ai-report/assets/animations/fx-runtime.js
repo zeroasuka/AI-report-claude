@@ -73,7 +73,7 @@
       const active = document.querySelector('.slide.is-active') || document.querySelector('.slide');
       if (active) initFxIn(active);
 
-      // Watch all slides for class changes
+      // Watch all slides for class changes (desktop nav)
       const slides = document.querySelectorAll('.slide');
       slides.forEach((sl) => {
         const mo = new MutationObserver((muts) => {
@@ -86,6 +86,16 @@
         });
         mo.observe(sl, { attributes: true, attributeFilter: ['class'] });
       });
+
+      // 手機捲動模式：slide 進入 viewport 時才初始化 canvas fx
+      if (window.matchMedia('(max-width:768px)').matches && 'IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) initFxIn(e.target);
+          });
+        }, { threshold: 0.15 });
+        slides.forEach(sl => io.observe(sl));
+      }
     });
   }
 
