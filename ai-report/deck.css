@@ -1403,6 +1403,13 @@ body.deck-ai .slide.is-active{transform:none}
   .lb-close{width:44px!important;height:44px!important;font-size:24px!important;top:6px!important;right:6px!important}
   .lb-hint{font-size:11px!important;bottom:10px!important}
 
+  /* --- HTML Lightbox iframe 手機適配 --- */
+  #lightboxIframe{
+    width:96vw!important;
+    height:90vh!important;
+    border-radius:8px!important;
+  }
+
   /* --- 影片補強 --- */
   .video-wrap+div{font-size:10px!important;gap:2px!important}
 

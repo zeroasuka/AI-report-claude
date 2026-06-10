@@ -1327,7 +1327,7 @@
           <div class="col-head" style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap">
             <span class="n" style="flex-shrink:0">STEP 01</span>
             <h4 style="flex:1;min-width:0">請 Gemini 幫忙寫規格書<small>聊天視窗 · 不耗 Agent token</small></h4>
-            <button type="button" data-zoom-src="media/spec-sheet.png"
+            <button type="button" data-zoom-html="media/spec-sheet.html"
               aria-label="看完整規格書"
               style="flex-shrink:0;padding:5px 10px;font-size:11px;
                 border:1px solid rgba(255,255,255,.12);border-radius:8px;
@@ -1377,8 +1377,8 @@
           </div>
           <div class="cw-body" style="padding:0;background:transparent">
             <div style="position:relative;cursor:pointer"
-                 data-zoom-src="media/spec-sheet.png"
-                 aria-label="點擊放大檢視規格書">
+                 data-zoom-html="media/spec-sheet.html"
+                 aria-label="點擊開啟完整規格書">
               <img src="media/spec-sheet.png"
                    alt="Markdown 規格書"
                    style="width:100%;height:auto;display:block;border-radius:0 0 12px 12px">
@@ -1387,7 +1387,7 @@
                           padding:4px 10px;border-radius:6px;
                           font:500 10px/1 var(--font-mono);
                           backdrop-filter:blur(4px)">
-                🔍 點擊放大
+                🔍 點擊開啟
               </div>
             </div>
           </div>
@@ -2178,6 +2178,16 @@
   <div class="lb-hint">按 ESC 或點背景關閉</div>
 </div>
 
+<!-- HTML 彈窗 Lightbox（規格書專用）-->
+<div class="lightbox" id="lightboxHtml" role="dialog" aria-modal="true" aria-hidden="true" style="cursor:default">
+  <button class="lb-close" aria-label="關閉">×</button>
+  <iframe id="lightboxIframe" src="about:blank"
+    style="width:90vw;max-width:900px;height:85vh;border:none;border-radius:12px;background:#181825"
+    loading="lazy"
+    title="規格書"></iframe>
+  <div class="lb-hint">按 ESC 或點 × 關閉</div>
+</div>
+
 <!-- runtime + FX -->
 <script src="assets/runtime.js"></script>
 <script src="assets/animations/fx-runtime.js"></script>
@@ -2330,6 +2340,48 @@
     if (!isOpen) return;
     if (e.key === 'Escape') { close(); e.stopPropagation(); }
     else if (['ArrowLeft','ArrowRight','PageUp','PageDown',' ','Home','End'].includes(e.key)) {
+      e.stopPropagation();
+    }
+  }, true);
+})();
+</script>
+
+<script>
+/* HTML Lightbox：專給 data-zoom-html 使用，以 iframe 載入規格書 */
+(function(){
+  const lb = document.getElementById('lightboxHtml');
+  const frame = document.getElementById('lightboxIframe');
+  const closeBtn = lb.querySelector('.lb-close');
+  let isOpen = false;
+
+  function open(src){
+    frame.src = src;
+    lb.classList.add('is-open');
+    lb.setAttribute('aria-hidden','false');
+    isOpen = true;
+  }
+  function close(){
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden','true');
+    isOpen = false;
+    setTimeout(()=>{ if(!isOpen) frame.src='about:blank'; }, 300);
+  }
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-zoom-html]');
+    if (btn) {
+      const src = btn.getAttribute('data-zoom-html');
+      if (src) { open(src); e.preventDefault(); e.stopPropagation(); }
+      return;
+    }
+    if (e.target === lb) close();
+  });
+  closeBtn.addEventListener('click', close);
+
+  document.addEventListener('keydown', e => {
+    if (!isOpen) return;
+    if (e.key === 'Escape') { close(); e.stopPropagation(); }
+    else if (['ArrowLeft','ArrowRight','PageUp','PageDown',' '].includes(e.key)) {
       e.stopPropagation();
     }
   }, true);
