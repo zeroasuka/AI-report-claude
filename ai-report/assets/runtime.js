@@ -301,7 +301,9 @@
 
     function toggleNotes(force){ notes.classList.toggle('open', force!==undefined?force:!notes.classList.contains('open')); }
     function toggleOverview(force){
+      if (force === false && !overviewBuilt) return; // overview 未建立時強制關閉直接返回
       buildOverview(); // lazy-init: no-op after first call
+      if (!overview) return; // 防禦性檢查
       const isOpen = force!==undefined ? force : !overview.classList.contains('open');
       overview.classList.toggle('open', isOpen);
       if (isOpen) {
@@ -971,11 +973,17 @@
       if (m) go(Math.max(0, parseInt(m[1],10)-1));
     }
     window.addEventListener('hashchange', fromHash);
-    fromHash();
-    go(idx);
+
+    // Fix: merge fromHash + go(idx) into one call to avoid double animation/counter/broadcast
+    const startIdx = (function(){
+      const m = /^#\/(\d+)/.exec(location.hash||'');
+      return m ? Math.max(0, parseInt(m[1],10)-1) : 0;
+    })();
+    go(startIdx);
 
     // Mobile (≤1024px): slides are stacked/scrollable, go() is never called.
     // Use IntersectionObserver to inject iframe src when slide scrolls into view.
+    // Must be set up BEFORE fromHash/go so initial visible slides are caught.
     if (window.matchMedia('(max-width:1024px)').matches && 'IntersectionObserver' in window) {
       const iframeIO = new IntersectionObserver((entries) => {
         entries.forEach(e => {
@@ -987,7 +995,17 @@
           }
         });
       }, { threshold: 0.1 });
-      slides.forEach(s => iframeIO.observe(s));
+      slides.forEach(s => {
+        iframeIO.observe(s);
+        //補：頁面載入時已在 viewport 內的 slide 主動觸發（hash 直跳 edge case）
+        const rect = s.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          s.querySelectorAll('iframe[data-src]').forEach(f => {
+            f.src = f.getAttribute('data-src');
+            f.removeAttribute('data-src');
+          });
+        }
+      });
     }
   });
 })();
