@@ -819,7 +819,7 @@ body.deck-ai .slide.is-active{transform:none}
     align-items:start!important;
   }
   .kpi-row,.tool-grid,.flow-h,.steps-h,.flow3-h,.flow-pipeline,.compare-2,
-  .grid.g2,.grid.g3,.grid.g4{
+  .grid.g2,.grid.g3,.grid.g4,.intro-a-grid,.intro-d-grid{
     grid-template-columns:1fr!important;
     gap:14px!important;
     height:auto!important;
@@ -956,7 +956,7 @@ body.deck-ai .slide.is-active{transform:none}
 
 /* 響應式：< 900px 自動退化為單欄 */
 @media (max-width:900px){
-  .intro-a-grid{grid-template-columns:1fr;gap:24px}
+  .intro-a-grid,.intro-d-grid{grid-template-columns:1fr!important;gap:24px}
   .intro-a-grid .portrait-block{aspect-ratio:4/5;max-height:380px;max-width:340px;margin:0 auto}
 }
 
