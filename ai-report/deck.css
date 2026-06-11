@@ -1349,9 +1349,9 @@ body.deck-ai .slide.is-active{transform:none}
 }
 
 /* =====================================================================
-   RWD · 手機 ≤640px
+   RWD · 手機 ≤640px  ← A-1 實驗：暫時放寬到 ≤1024px 涵蓋平板直立
    ===================================================================== */
-@media (max-width:640px){
+@media (max-width:1024px){
   /* --- 全局 --- */
   .slide{padding:60px 16px!important;min-height:100dvh!important}
   .bg-amb,.bg-grid{background-attachment:scroll!important}
