@@ -973,5 +973,21 @@
     window.addEventListener('hashchange', fromHash);
     fromHash();
     go(idx);
+
+    // Mobile (≤768px): slides are stacked/scrollable, go() is never called.
+    // Use IntersectionObserver to inject iframe src when slide scrolls into view.
+    if (window.matchMedia('(max-width:768px)').matches && 'IntersectionObserver' in window) {
+      const iframeIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.querySelectorAll('iframe[data-src]').forEach(f => {
+              f.src = f.getAttribute('data-src');
+              f.removeAttribute('data-src');
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+      slides.forEach(s => iframeIO.observe(s));
+    }
   });
 })();
