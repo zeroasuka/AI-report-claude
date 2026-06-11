@@ -691,7 +691,7 @@ body.deck-ai .slide.is-active{transform:none}
    策略：縮 padding + 字體改用 vh 自動依高度縮放 + 覆寫常見大 inline margin
         + overflow-y:auto 當最後保險（極端情況仍可捲）
    觸發：viewport 高度 ≤ 720px（典型情境：1366×768 筆電瀏覽器沒全螢幕）*/
-@media (max-height:720px) and (min-width:769px){
+@media (max-height:720px) and (min-width:1025px){
   /* slide padding 砍掉 2/3，但保留左右橫向 padding 給觀感 */
   body.deck-ai .slide{padding:12px 56px;overflow-y:auto}
   /* 太短的時候連底部 slide-chip 也壓縮 */
@@ -782,7 +782,7 @@ body.deck-ai .slide.is-active{transform:none}
 }
 
 /* ========== 行動版：26 頁變一篇長文，手指捲動即可 ========== */
-@media (max-width:768px){
+@media (max-width:1024px){
   /* --- 1. 解絕對定位，所有 slide 自然堆疊 --- */
   body.deck-ai .deck{height:auto;overflow:visible}
   body.deck-ai .slide{
@@ -1356,7 +1356,7 @@ body.deck-ai .slide.is-active{transform:none}
   .slide{padding:60px 16px!important;min-height:100dvh!important}
   .bg-amb,.bg-grid{background-attachment:scroll!important}
 
-  /* --- 字體細化（補 768px 未涵蓋的 Codex 深潛字體）--- */
+  /* --- 字體細化（補 1024px 未涵蓋的 Codex 深潛字體）--- */
   h2{font-size:22px!important}
   h2.h2-large{font-size:24px!important}
   h2.h2-mid{font-size:20px!important}
@@ -1449,7 +1449,7 @@ body.deck-ai .slide.is-active{transform:none}
     flex-direction:column!important;
     gap:20px!important;
   }
-  /* 桌面版：覆蓋 768px 的 display:none，顯示在手機版下方 */
+  /* 桌面版：覆蓋 1024px 的 display:none，顯示在手機版下方 */
   body.deck-ai .slide [data-anim="fade-left"]:has(.browser-frame){
     display:block!important;
     width:100%!important;

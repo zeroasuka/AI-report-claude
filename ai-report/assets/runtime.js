@@ -974,9 +974,9 @@
     fromHash();
     go(idx);
 
-    // Mobile (≤768px): slides are stacked/scrollable, go() is never called.
+    // Mobile (≤1024px): slides are stacked/scrollable, go() is never called.
     // Use IntersectionObserver to inject iframe src when slide scrolls into view.
-    if (window.matchMedia('(max-width:768px)').matches && 'IntersectionObserver' in window) {
+    if (window.matchMedia('(max-width:1024px)').matches && 'IntersectionObserver' in window) {
       const iframeIO = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
