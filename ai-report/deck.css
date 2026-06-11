@@ -1427,6 +1427,15 @@ body.deck-ai .slide.is-active{transform:none}
 
   /* --- 影片補強 --- */
   .video-wrap+div{font-size:10px!important;gap:2px!important}
+  .video-wrap{max-height:260px!important}
+
+  /* --- 4 階段流程：垂直堆疊 --- */
+  .flow-pipeline{grid-template-columns:1fr!important;gap:8px!important;max-width:360px!important;margin:0 auto!important}
+  .flow-pipeline .pipe-arrow{transform:rotate(90deg)!important;padding:2px 0!important;font-size:20px!important}
+
+  /* --- orbit-tag 進一步縮小防溢出 --- */
+  .hero-circle{width:clamp(180px,85vw,280px)!important}
+  .orbit-tag{font-size:8px!important;padding:2px 5px!important}
 
   /* --- Slides 17 & 22：雙版展示（桌面＋手機 mockup）垂直堆疊 --- */
   /* 雙欄容器改 flex 讓 order 生效 */

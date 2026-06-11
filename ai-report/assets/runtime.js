@@ -170,7 +170,7 @@
         clone.style.inset = '0';
         clone.style.transform = 'none';
         clone.style.opacity = '1';
-        clone.style.padding = '72px 96px'; // ensure padding is kept
+        clone.style.padding = '72px 88px'; // ensure padding matches deck.css
         
         mini.appendChild(clone);
         t.appendChild(mini);
