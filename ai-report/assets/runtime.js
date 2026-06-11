@@ -267,6 +267,17 @@
         requestAnimationFrame(tick);
       });
 
+      // Lazy-load iframes within 2 slides ahead (one-shot: once src is set, never reset)
+      const PRELOAD_AHEAD = 2;
+      slides.forEach((s, i) => {
+        if (i <= n + PRELOAD_AHEAD) {
+          s.querySelectorAll('iframe[data-src]').forEach(f => {
+            f.src = f.getAttribute('data-src');
+            f.removeAttribute('data-src');
+          });
+        }
+      });
+
       // Broadcast to other window (audience ↔ presenter)
       if (!fromRemote && bc) {
         bc.postMessage({ type: 'go', idx: n });
