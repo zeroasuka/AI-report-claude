@@ -31,7 +31,10 @@ body.deck-ai{
   background:var(--bg);color:var(--text-1);
 }
 
-body.deck-ai .slide{padding:72px 88px;color:var(--text-1)}
+body.deck-ai .slide{
+  padding:72px 88px;color:var(--text-1);
+  contain:layout style paint;
+}
 
 /* 取消 base.css 的 0.5s 大幅度滑動，讓子元素的 data-anim 動畫能清楚被看見 */
 body.deck-ai .slide{
