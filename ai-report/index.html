@@ -7,6 +7,7 @@
 <!-- 封面雙語字體：古典魔幻 Cinzel + 科技感寬字距黑體 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.qrserver.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/base.css">
@@ -188,7 +189,7 @@
         <div data-anim="fade-right">
           <div style="font:600 11px/1 var(--font-mono);color:var(--accent);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px">📸 跨平台一致</div>
           <div style="border-radius:18px;overflow:hidden;border:1px solid var(--border);background:#1d1d1f;box-shadow:var(--shadow-lg)">
-            <img src="media/typeless.webp" alt="Typeless 桌面與手機版截圖" style="width:100%;display:block">
+            <img src="media/typeless.webp" alt="Typeless 桌面與手機版截圖" loading="lazy" style="width:100%;display:block">
           </div>
           <p style="margin-top:14px;font:500 12px/1.5 var(--font-mono);color:var(--text-3);letter-spacing:.06em;text-align:center">↑ 桌面 + 手機介面一致，學一次到處用</p>
         </div>
@@ -211,7 +212,7 @@
       </h2>
 
       <div class="video-wrap" data-anim="zoom-pop" style="max-width:920px;max-height:520px;margin:0 auto;aspect-ratio:16/9">
-        <video controls preload="metadata" playsinline style="width:100%;height:100%;display:block;object-fit:contain;background:#000">
+        <video controls preload="metadata" playsinline poster="media/typeless.webp" style="width:100%;height:100%;display:block;object-fit:contain;background:#000">
           <source src="media/typeless-demo.mp4" type="video/mp4">
         </video>
       </div>
@@ -522,7 +523,7 @@
 
         <div class="iface-card">
           <div class="iface-preview">
-            <img class="contain" src="media/interface-mobile.webp" alt="Codex 在 ChatGPT 行動版 App 內的介面">
+            <img class="contain" src="media/interface-mobile.webp" loading="lazy" alt="Codex 在 ChatGPT 行動版 App 內的介面">
           </div>
           <div class="iface-meta">
             <div class="iface-head">
@@ -539,7 +540,7 @@
 
         <div class="iface-card blue">
           <div class="iface-preview">
-            <img class="contain" src="media/interface-desktop.webp" alt="Codex 桌面 App，含 sidebar、thread、diff/commit panel">
+            <img class="contain" src="media/interface-desktop.webp" loading="lazy" alt="Codex 桌面 App，含 sidebar、thread、diff/commit panel">
           </div>
           <div class="iface-meta">
             <div class="iface-head">
@@ -557,7 +558,7 @@
 
         <div class="iface-card green">
           <div class="iface-preview">
-            <img class="contain" src="media/interface-cli.webp" alt="Codex CLI 在終端機中的介面">
+            <img class="contain" src="media/interface-cli.webp" loading="lazy" alt="Codex CLI 在終端機中的介面">
           </div>
           <div class="iface-meta">
             <div class="iface-head">
@@ -575,7 +576,7 @@
 
         <div class="iface-card amber">
           <div class="iface-preview">
-            <img class="contain" src="media/interface-ide.webp" alt="Codex 在 IDE 外掛內的介面">
+            <img class="contain" src="media/interface-ide.webp" loading="lazy" alt="Codex 在 IDE 外掛內的介面">
           </div>
           <div class="iface-meta">
             <div class="iface-head">
@@ -1175,6 +1176,7 @@
                  data-zoom-html="media/spec-sheet.html"
                  aria-label="點擊開啟完整規格書">
               <img src="media/spec-sheet.png"
+                   loading="lazy"
                    alt="Markdown 規格書"
                    style="width:100%;height:100%;display:block;object-fit:cover;object-position:top center;border-radius:12px">
               <div style="position:absolute;bottom:10px;right:12px;
@@ -1366,7 +1368,7 @@
         <!-- 左：error 截圖 -->
         <div data-anim="fade-left">
           <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#1d1d1f;box-shadow:var(--shadow-lg)">
-            <img src="media/linguist-error.webp" alt="MSVCR100.dll error" style="width:100%;display:block">
+            <img src="media/linguist-error.webp" loading="lazy" alt="MSVCR100.dll error" style="width:100%;display:block">
           </div>
           <p style="margin-top:12px;font:500 12px/1 var(--font-mono);color:var(--text-3);letter-spacing:.08em">↑ linguist.exe · 2026-05-13 · MSVCR100.dll 缺失</p>
         </div>
@@ -1561,7 +1563,7 @@
         <div data-anim="fade-up" style="display:flex;flex-direction:column;gap:8px;align-items:center">
           <div style="font:600 10px/1 var(--font-mono);color:#5fe3a8;letter-spacing:.16em;text-transform:uppercase">🎬 機場現場</div>
           <div style="width:100%;max-width:260px;border-radius:18px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#000;aspect-ratio:9/16">
-            <video controls preload="metadata" playsinline style="width:100%;height:100%;object-fit:cover;display:block">
+            <video controls preload="none" playsinline poster="media/OpenClaw-screenshot.jpg" style="width:100%;height:100%;object-fit:cover;display:block">
               <source src="media/OpenClaw-aespa.mp4" type="video/mp4">
             </video>
           </div>
@@ -1573,7 +1575,7 @@
           <div style="font:600 11px/1 var(--font-mono);color:var(--accent);letter-spacing:.16em;text-transform:uppercase">📸 OpenClaw 查到的</div>
           <div class="phone-mock" style="width:340px">
             <div class="screen" style="background:#fff;aspect-ratio:auto;height:444px">
-              <img src="media/OpenClaw-screenshot.jpg" alt="OpenClaw 機場航班查詢" style="width:100%;height:100%;object-fit:cover;object-position:top center;background:#fff">
+              <img src="media/OpenClaw-screenshot.jpg" loading="lazy" alt="OpenClaw 機場航班查詢" style="width:100%;height:100%;object-fit:cover;object-position:top center;background:#fff">
             </div>
           </div>
           <p style="font:500 11px/1.5 var(--font-mono);color:var(--text-3);letter-spacing:.06em;text-align:center;margin-top:4px">↑ 即時查當下落地航班 · 排除廉航 · 找出 aespa 班機</p>
@@ -1600,7 +1602,7 @@
         <!-- 左：影片 -->
         <div data-anim="fade-left">
           <div class="video-wrap">
-            <video controls preload="metadata" playsinline style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#000">
+            <video controls preload="metadata" playsinline poster="media/hermes-1.webp" style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#000">
               <source src="media/hermes-lemonade.mp4" type="video/mp4">
             </video>
           </div>

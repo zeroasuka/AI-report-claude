@@ -96,6 +96,16 @@
         }, { threshold: 0.15 });
         slides.forEach(sl => io.observe(sl));
       }
+
+      // 切換標籤時暫停 / 恢復 canvas fx，避免背景耗電
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          slides.forEach(sl => stopFxIn(sl));
+        } else {
+          const active = document.querySelector('.slide.is-active') || slides[0];
+          if (active) initFxIn(active);
+        }
+      });
     });
   }
 

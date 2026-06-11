@@ -4,6 +4,10 @@
  */
 :root{--anim-dur:.7s;--anim-ease:cubic-bezier(.4,0,.2,1)}
 
+/* GPU 合成層提示：讓瀏覽器提前為動畫元素建立獨立層 */
+[data-anim]{will-change:transform,opacity}
+.anim-stagger-list > *{will-change:transform,opacity}
+
 /* ---------- FADE DIRECTIONALS ---------- */
 @keyframes kf-fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
 @keyframes kf-fade-down{from{opacity:0;transform:translateY(-32px)}to{opacity:1;transform:none}}

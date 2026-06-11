@@ -90,6 +90,7 @@ body.deck-ai .slide.is-active{transform:none}
 /* ========== 內容區層級 ========== */
 .slide > *{position:relative;z-index:2}
 .slide > .bg-amb,.slide > .bg-grid,.slide > [data-fx]{z-index:0}
+[data-fx]{will-change:transform;contain:layout style paint}
 .slide.center{align-items:center;text-align:center}
 .slide.center .eyebrow-c{margin-left:auto;margin-right:auto}
 
@@ -601,7 +602,7 @@ body.deck-ai .slide.is-active{transform:none}
   border:1px solid rgba(168,85,247,.45);
   font:600 14px/1 var(--font-sans);color:#c084fc;
   text-decoration:none;letter-spacing:.04em;
-  transition:transform .15s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease);
+  transition:transform .15s var(--ease),box-shadow .2s var(--ease);
   box-shadow:0 6px 18px -8px rgba(168,85,247,.5)}
 .open-link:hover{transform:translateY(-2px);border-color:rgba(168,85,247,.7);
   box-shadow:0 10px 26px -8px rgba(168,85,247,.7);text-decoration:none}
