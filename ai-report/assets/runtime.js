@@ -967,6 +967,52 @@
       }
     });
 
+    /* ===== Edge hotzones（最左/最右隱形熱區翻頁；方案 A：滑鼠+觸控皆可）=====
+     * 只在桌面翻頁模式(視窗 >1024px) 顯示；堆疊捲動模式(≤1024) 隱藏，不干擾捲動。
+     * 完全透明、無任何視覺 → 桌面視覺零影響。
+     * 點左帶→上一頁、點右帶→下一頁（直接呼叫同閉包的 go）。
+     * 防誤觸：點擊瞬間讓熱區 pointer-events:none，用 elementFromPoint 取樣下方元素，
+     * 若下方是 iframe / a / button / video / 可放大圖，轉交該點擊、不翻頁。 */
+    (function setupEdgeZones(){
+      const deckPaging = window.matchMedia('(min-width:1025px)');
+      const INTERACTIVE = 'iframe, a, button, video, input, textarea, select, .iface-preview, [data-zoom-src], [data-zoom-html], .open-link, .wf-card';
+
+      function makeZone(side){
+        const z = document.createElement('div');
+        z.className = 'edge-nav-zone edge-nav-' + side;
+        z.style.cssText = 'position:fixed;top:0;bottom:0;' + side + ':0;width:7vw;max-width:110px;'
+          + 'z-index:50;background:transparent;cursor:pointer;'
+          + 'display:' + (deckPaging.matches ? 'block' : 'none') + ';';
+        z.setAttribute('aria-hidden', 'true');
+        z.addEventListener('click', function(e){
+          if (!deckPaging.matches) return;
+          z.style.pointerEvents = 'none';
+          const under = document.elementFromPoint(e.clientX, e.clientY);
+          z.style.pointerEvents = '';
+          if (under && under.closest && under.closest(INTERACTIVE)) {
+            if (typeof under.click === 'function') under.click();
+            return;
+          }
+          go(side === 'right' ? idx + 1 : idx - 1);
+        });
+        return z;
+      }
+
+      const left = makeZone('left');
+      const right = makeZone('right');
+      document.body.appendChild(left);
+      document.body.appendChild(right);
+
+      function sync(){
+        const on = deckPaging.matches ? 'block' : 'none';
+        left.style.display = on;
+        right.style.display = on;
+      }
+      if (deckPaging.addEventListener) deckPaging.addEventListener('change', sync);
+      else if (deckPaging.addListener) deckPaging.addListener(sync);
+      window.addEventListener('resize', sync);
+    })();
+
     // hash deep-link
     function fromHash(){
       const m = /^#\/(\d+)/.exec(location.hash||'');
