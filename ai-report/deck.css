@@ -960,7 +960,7 @@ body.deck-ai .slide.is-active{transform:none}
 /* 響應式：< 900px 自動退化為單欄 */
 @media (max-width:900px){
   .intro-a-grid,.intro-d-grid{grid-template-columns:1fr!important;gap:24px}
-  .intro-a-grid .portrait-block{aspect-ratio:4/5;max-height:380px;max-width:340px;margin:0 auto}
+  .intro-a-grid .portrait-block{aspect-ratio:4/5;max-height:420px;max-width:340px;margin:0 auto}
   /* 手機版：照片移到文字上方（桌面版不動） */
   .intro-a-grid .portrait-block{order:-1}
 }
