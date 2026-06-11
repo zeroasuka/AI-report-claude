@@ -341,8 +341,8 @@ body.deck-ai .slide.is-active{transform:none}
   vertical-align:middle;margin:0 14px;
 }
 .cover-zh{
-  font-family:'ZCOOL QingKe HuangYou','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
-  font-weight:400;
+  font-family:'Orbitron','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
+  font-weight:800;
   font-size:clamp(54px,6.6vw,108px);
   line-height:1.04;
   letter-spacing:.04em;

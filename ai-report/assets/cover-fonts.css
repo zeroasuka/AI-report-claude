@@ -123,22 +123,3 @@
   src: url('fonts/cormorant-co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd5wDD-iNM8.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* ZCOOL XIAOWEI — 精簡版，僅包含封面「言出法隨·幻化成真」9 個字元（4KB） */
-@font-face {
-  font-family: 'ZCOOL XiaoWei';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/zcool-xiaowei-subset.woff2') format('woff2');
-  unicode-range: U+b7, U+51fa, U+5316, U+5e7b, U+6210, U+6cd5, U+771f, U+8a00, U+96a8;
-}
-
-/* ZCOOL QINGKE HUANGYOU — 精簡版，僅含封面「言出法隨·幻化成真」9 個字（5KB） */
-@font-face {
-  font-family: 'ZCOOL QingKe HuangYou';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/zcool-qingke-subset.woff2') format('woff2');
-  unicode-range: U+b7, U+51fa, U+5316, U+5e7b, U+6210, U+6cd5, U+771f, U+8a00, U+96a8;
-}
