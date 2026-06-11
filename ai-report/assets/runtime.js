@@ -135,8 +135,13 @@
     }
 
     /* ===== overview grid (O key) ===== */
+    // Lazily built on first open — avoids 32x cloneNode(true) on page load.
     let overview = document.querySelector('.overview');
-    if (!overview) {
+    let overviewBuilt = !!overview; // true if pre-existing in DOM
+
+    function buildOverview() {
+      if (overviewBuilt) return;
+      overviewBuilt = true;
       overview = document.createElement('div');
       overview.className = 'overview';
       slides.forEach((s, i) => {
@@ -285,6 +290,7 @@
 
     function toggleNotes(force){ notes.classList.toggle('open', force!==undefined?force:!notes.classList.contains('open')); }
     function toggleOverview(force){
+      buildOverview(); // lazy-init: no-op after first call
       const isOpen = force!==undefined ? force : !overview.classList.contains('open');
       overview.classList.toggle('open', isOpen);
       if (isOpen) {
