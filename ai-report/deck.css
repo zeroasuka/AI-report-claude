@@ -341,8 +341,8 @@ body.deck-ai .slide.is-active{transform:none}
   vertical-align:middle;margin:0 14px;
 }
 .cover-zh{
-  font-family:'Orbitron','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
-  font-weight:800;
+  font-family:'ZCOOL XiaoWei','Orbitron','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
+  font-weight:400;
   font-size:clamp(54px,6.6vw,108px);
   line-height:1.04;
   letter-spacing:.04em;
@@ -488,7 +488,7 @@ body.deck-ai .slide.is-active{transform:none}
   letter-spacing:.28em;text-transform:uppercase;margin-bottom:20px;
 }
 .hero-circle-title{
-  font-family:'Orbitron','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
+  font-family:'ZCOOL XiaoWei','Orbitron','Inter','Microsoft JhengHei','Noto Sans TC',sans-serif;
   font-size:clamp(72px,9vw,108px);
   font-weight:900;line-height:1;letter-spacing:-.02em;margin:0;
   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
