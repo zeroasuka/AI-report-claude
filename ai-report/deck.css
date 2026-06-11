@@ -795,7 +795,7 @@ body.deck-ai .slide.is-active{transform:none}
     overflow:visible;
     z-index:auto;
   }
-  body.deck-ai .slide.center{align-items:flex-start}
+  body.deck-ai .slide.center{align-items:center}
 
   /* --- 2. 頂端進度條變細、章節 chrome 縮 --- */
   .deck-progress{height:1.5px}
