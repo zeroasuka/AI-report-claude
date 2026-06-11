@@ -49,10 +49,14 @@
   };
 
   U.loop = (fn) => {
-    let raf = 0, stopped = false, t0 = performance.now();
+    let raf = 0, stopped = false, t0 = performance.now(), last = t0;
     const tick = (t) => {
       if (stopped) return;
-      fn((t - t0)/1000);
+      const dt = (t - last) / 1000;
+      last = t;
+      // delta-time 上限保護：rAF 被暫停後恢復（tab 切換、iOS 捲動）
+      // 第一幀 dt 可能累積幾百毫秒，粒子會大跳；直接 skip 這幀
+      if (dt < 0.1) fn((t - t0) / 1000);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);

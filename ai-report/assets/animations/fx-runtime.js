@@ -21,17 +21,13 @@
   })();
   const base = myScript ? myScript.src.replace(/fx-runtime\.js.*$/, 'fx/') : 'assets/animations/fx/';
 
-  let loaded = 0;
-  const total = FX_LIST.length;
+  // 載入合併後的 bundle（原本 7 個獨立請求 → 1 個請求）
   const ready = new Promise((resolve) => {
-    if (!total) return resolve();
-    FX_LIST.forEach((name) => {
-      const s = document.createElement('script');
-      s.src = base + name + '.js';
-      s.async = false;
-      s.onload = s.onerror = () => { if (++loaded >= total) resolve(); };
-      document.head.appendChild(s);
-    });
+    const s = document.createElement('script');
+    s.src = base.replace(/fx\/$/, 'fx-bundle.js');
+    s.async = false;
+    s.onload = s.onerror = resolve;
+    document.head.appendChild(s);
   });
 
   window.__hpxActive = window.__hpxActive || new Map();
