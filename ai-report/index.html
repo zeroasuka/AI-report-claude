@@ -861,24 +861,24 @@
     <div style="max-width:1300px;margin:0 auto;width:100%">
       <div class="eyebrow-c amber" data-anim="fade-down"><span class="dot"></span>CASE 01 · PART NUMBER 查詢 App</div>
       <h2 class="h2-large" data-anim="rise-in" style="font-size:64.88px">
-        每天查 part number，<br>
-        <span class="gradient-text">不再切視窗、不再複製貼上。</span>
+        Part Number 散在文件和 Email 裡，<br>
+        <span class="gradient-text">我要的是快速找到、快速貼上。</span>
       </h2>
 
       <div style="margin-top:42px" data-anim="fade-up">
-        <div class="stat-label">舊流程</div>
+        <div class="stat-label">真正痛點</div>
         <div class="flow-h" style="margin-top:18px">
-          <div class="step"><div class="n">01</div><h4>開 Excel</h4><p>找到對的工作表</p></div>
+          <div class="step"><div class="n">01</div><h4>PN 散落各處</h4><p>文件、Email、訊息裡都可能出現</p></div>
           <div class="arrow">→</div>
-          <div class="step"><div class="n">02</div><h4>Ctrl + F 搜尋</h4><p>輸入零件號</p></div>
+          <div class="step"><div class="n">02</div><h4>要丟進內部系統</h4><p>查料、出料都需要正確 PN</p></div>
           <div class="arrow">→</div>
-          <div class="step"><div class="n">03</div><h4>複製 / 切視窗 / 貼上</h4><p>重複再重複</p></div>
+          <div class="step"><div class="n">03</div><h4>還要整理物流資訊</h4><p>收件人、時間、地址、電話、備註</p></div>
         </div>
 
         <p class="callout" style="margin-top:32px;font-size:17px;max-width:none">
-          🎯 流程繁瑣、容易出錯、<br>
-          而且——<b style="color:var(--text-1)">這件事我以前覺得「沒辦法」</b>。<br>
-          我不是工程師，不會 React、不會後端、不會部署。
+          🎯 這個小工具不是取代公司系統，<br>
+          而是把散落的 <b style="color:var(--text-1)">Part Number 匯入、搜尋、複製</b>，<br>
+          快速貼回公司內部的查料與出料系統。
         </p>
       </div>
     </div>
@@ -903,19 +903,18 @@
             <div class="chrome"><i></i><i></i><i></i><em>~/parts-lookup — codex</em></div>
             <pre><span class="s">// 用 typeless 一句話講出去</span>
 <span class="p">andy@mac</span>:<span class="b">~</span>$ codex
-<span class="k">&gt;</span> <span class="c">我每天要查料號，現在都開 Excel 慢慢找，</span>
-<span class="k">&nbsp;</span>  <span class="c">能不能做一個網頁，我打料號它就跳出資料？</span>
-<span class="k">&nbsp;</span>  <span class="c">之後想給同事一起用。</span>
+<span class="k">&gt;</span> <span class="c">Part Number 常出現在文件和 Email 裡，</span>
+<span class="k">&nbsp;</span>  <span class="c">我想先匯入 PN，再快速搜尋和複製。</span>
+<span class="k">&nbsp;</span>  <span class="c">關鍵字不完整也要找得到。</span>
+<span class="k">&nbsp;</span>  <span class="c">還要產生出料物流需要的收件資訊。</span>
 
-<span class="b">codex ›</span> <span class="b">沒問題，用 FastAPI + JSON 幫你搭。</span>
-<span class="k">&nbsp;</span>      <span class="b">料號資料現在在哪？</span>
-<span class="k">&gt;</span> <span class="c">一個 Excel，2000 多筆，</span>
-<span class="k">&nbsp;</span>  <span class="c">欄位有料號 / 名稱 / 庫位。</span>
+<span class="b">codex ›</span> <span class="b">懂。做成內部查詢小工具：</span>
+<span class="k">&nbsp;</span>      <span class="b">匯入 PN、智慧搜尋、一鍵複製、物流資訊產生。</span>
 
-<span class="s">→ reading parts.xlsx (2,037 rows)</span>
-<span class="s">→ scaffolding fastapi</span>
-<span class="s">→ exporting xlsx → parts.json</span>
-<span class="s">→ wiring up search endpoint</span>
+<span class="s">→ importing part numbers</span>
+<span class="s">→ building fuzzy search</span>
+<span class="s">→ adding copy buttons</span>
+<span class="s">→ generating shipping info fields</span>
 <span class="s">→ done</span>
 
 <span class="c">✓ ready to run locally</span><span class="blink"></span></pre>
@@ -938,18 +937,18 @@
       <div class="steps-h" style="--n:3;margin-top:14px;gap:14px" data-anim="fade-up">
         <div class="step-card" style="padding:13px 16px">
           <div class="step-n" style="margin-bottom:6px">STEP · 01</div>
-          <h4 style="margin:0 0 3px">🎤 口述需求</h4>
-          <p style="font-size:13px">用 Typeless 講一段白話痛點，丟給 Codex。</p>
+          <h4 style="margin:0 0 3px">📥 匯入 PN</h4>
+          <p style="font-size:13px">把文件與 Email 裡的 Part Number 先集中整理。</p>
         </div>
         <div class="step-card" style="padding:13px 16px">
           <div class="step-n" style="margin-bottom:6px">STEP · 02</div>
-          <h4 style="margin:0 0 3px">⚡ Codex 寫程式</h4>
-          <p style="font-size:13px">FastAPI 後端、前端查詢頁，一條龍寫完。</p>
+          <h4 style="margin:0 0 3px">🔎 智慧搜尋</h4>
+          <p style="font-size:13px">關鍵字不完整也能找到資料，並快速複製。</p>
         </div>
         <div class="step-card" style="padding:13px 16px">
           <div class="step-n" style="margin-bottom:6px">STEP · 03</div>
-          <h4 style="margin:0 0 3px">🔐 本地開啟</h4>
-          <p style="font-size:13px">整包打包丟給同事，本地離線開、外人拿不到。</p>
+          <h4 style="margin:0 0 3px">📦 生成出料資訊</h4>
+          <p style="font-size:13px">收件人、時間、地址、電話、備註一次帶出。</p>
         </div>
       </div>
     </div>
@@ -965,30 +964,30 @@
     <div style="max-width:1200px;width:100%">
       <div class="eyebrow-c amber" data-anim="fade-down"><span class="dot"></span>CASE 01 · 成果</div>
       <h2 class="h2-large" data-anim="rise-in" style="font-size:66.88px">
-        一個想法，<br>讓<span class="gradient-text">日常工作流</span>變得不一樣。
+        從散落的 PN，<br>變成<span class="gradient-text">可搜尋、可複製、可出料</span>。
       </h2>
 
       <div class="kpi-row" style="margin:48px auto 0">
         <div class="kpi-cell" data-anim="zoom-pop">
           <div class="v">⚡</div>
-          <div class="l">效率提升</div>
-          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">查詢動作從多步驟簡化成一個欄位</p>
+          <div class="l">智慧搜尋</div>
+          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">關鍵字不完整，也能快速找到對應資料</p>
         </div>
         <div class="kpi-cell" data-anim="zoom-pop" style="animation-delay:.12s">
           <div class="v">✨</div>
-          <div class="l">方便度</div>
-          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">不用開 Excel、不用切視窗、隨手就能查</p>
+          <div class="l">快速操作</div>
+          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">搜尋結果一鍵複製，貼回內部查料與出料系統</p>
         </div>
         <div class="kpi-cell" data-anim="zoom-pop" style="animation-delay:.24s">
           <div class="v">🎯</div>
-          <div class="l">準確度</div>
-          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">系統幫你找對欄位，不再人為失誤</p>
+          <div class="l">自動生成資訊</div>
+          <p style="margin-top:10px;font-size:13px;color:var(--text-2);line-height:1.55">收件人、收件時間、地址、電話、備註快速產生</p>
         </div>
       </div>
 
       <p class="lede-c" style="text-align:center;margin:36px auto 0" data-anim="fade-up">
-        <b style="color:var(--text-1)">這就是 vibe coding 帶來的——</b><br>
-        把「我以為做不到的工具」變成「用說的就能擁有的工具」。
+        <b style="color:var(--text-1)">這就是這個工具的價值——</b><br>
+        把散落在文件與 Email 的 PN，變成可以搜尋、複製、帶入出料資訊的工作台。
       </p>
 
     </div>
