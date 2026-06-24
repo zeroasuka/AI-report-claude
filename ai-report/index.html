@@ -894,41 +894,44 @@
         <span class="gradient-text">一段需求</span>，搞定。
       </h2>
 
-      <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:36px;margin-top:18px;align-items:start">
-        <!-- 左：終端機卡 -->
+      <div style="display:grid;grid-template-columns:1fr 1.25fr;gap:32px;margin-top:18px;align-items:start">
+        <!-- 左：終端機卡（窄欄） -->
         <div data-anim="fade-left">
           <div class="term-card">
             <div class="chrome"><i></i><i></i><i></i><em>~/parts-lookup — codex</em></div>
-            <pre style="line-height:1.55"><span class="s">// 用 typeless 一句話講出去</span>
+            <pre><span class="s">// 用 typeless 一句話講出去</span>
 <span class="p">andy@mac</span>:<span class="b">~</span>$ codex
 <span class="k">&gt;</span> <span class="c">我每天要查料號，現在都開 Excel 慢慢找，</span>
 <span class="k">&nbsp;</span>  <span class="c">能不能做一個網頁，我打料號它就跳出資料？</span>
 <span class="k">&nbsp;</span>  <span class="c">之後想給同事一起用。</span>
 
-<span class="b">codex ›</span> <span class="b">沒問題。我用 FastAPI 幫你搭，</span>
-<span class="k">&nbsp;</span>      <span class="b">資料存成 JSON、前端做個查詢頁就好。</span>
+<span class="b">codex ›</span> <span class="b">沒問題，用 FastAPI + JSON 幫你搭。</span>
 <span class="k">&nbsp;</span>      <span class="b">料號資料現在在哪？</span>
 <span class="k">&gt;</span> <span class="c">一個 Excel，2000 多筆，</span>
 <span class="k">&nbsp;</span>  <span class="c">欄位有料號 / 名稱 / 庫位。</span>
+
 <span class="s">→ reading parts.xlsx (2,037 rows)</span>
 <span class="s">→ scaffolding fastapi</span>
 <span class="s">→ exporting xlsx → parts.json</span>
 <span class="s">→ wiring up search endpoint</span>
 <span class="s">→ done</span>
+
 <span class="c">✓ ready to run locally</span><span class="blink"></span></pre>
           </div>
         </div>
 
-        <!-- 右：手機直式實機框（內部工具 · 密碼保護） -->
-        <div data-anim="fade-right" style="display:flex;flex-direction:column;align-items:center;gap:10px">
-          <div style="display:flex;align-items:center;gap:8px;align-self:flex-start">
-            <span style="font:600 11px/1 var(--font-mono);color:#c084fc;letter-spacing:.16em;text-transform:uppercase">📱 實機操作</span>
-            <span style="font-size:11px;color:var(--text-3)">🔒 進站要密碼</span>
+        <!-- 右：桌面瀏覽器演示框（內部工具 · 密碼保護 · 高度自適應） -->
+        <div data-anim="fade-right">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font:600 11px/1 var(--font-mono);color:#93c5fd;letter-spacing:.16em;text-transform:uppercase">🖥 實機演示</span>
+            <span style="font-size:11px;color:var(--text-3)">🔒 進站要密碼 · 內部工具</span>
           </div>
-          <div class="phone-frame" style="--phone-scale:.72">
-            <div class="phone-screen" style="height:330px">
-              <iframe data-src="https://parts.andyorbo.pp.ua/" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms" referrerpolicy="no-referrer" style="height:458px"></iframe>
+          <div class="browser-frame">
+            <div class="bf-chrome">
+              <span class="bf-dot r"></span><span class="bf-dot y"></span><span class="bf-dot g"></span>
+              <div class="bf-addr">🔒 parts (內部工具)</div>
             </div>
+            <iframe data-src="https://parts.andyorbo.pp.ua/" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms" referrerpolicy="no-referrer"></iframe>
           </div>
         </div>
       </div>
@@ -947,8 +950,8 @@
         </div>
         <div class="step-card" style="padding:13px 16px">
           <div class="step-n" style="margin-bottom:6px">STEP · 03</div>
-          <h4 style="margin:0 0 3px">🔐 部署上線</h4>
-          <p style="font-size:13px">密碼保護、給有需要的同事用，外人進不來。</p>
+          <h4 style="margin:0 0 3px">🔐 本地開啟</h4>
+          <p style="font-size:13px">整包打包丟給同事，本地離線開、外人拿不到。</p>
         </div>
       </div>
     </div>
