@@ -509,12 +509,12 @@
 
       <div class="ingred-grid anim-stagger-list">
 
-        <!-- ① Agent — 核心主體 -->
+        <!-- ① Prompt — 任務指令 -->
         <div class="ingred-card">
-          <span class="ic">🤖</span>
-          <div class="name">Agent <small>智能體</small></div>
-          <div class="role">EXECUTOR</div>
-          <p>會使用 Model、工具和規則，把任務真的做完。</p>
+          <span class="ic">💬</span>
+          <div class="name">Prompt <small>任務指令</small></div>
+          <div class="role">TASK INPUT</div>
+          <p>把你要什麼、限制條件、成功標準講清楚。</p>
         </div>
 
         <!-- ② Skill — 能力 -->
@@ -544,7 +544,7 @@
         <!-- ⑤ 記憶 — 長期記憶 -->
         <div class="ingred-card">
           <span class="ic">🧠</span>
-          <div class="name">記憶 <small>長期記憶</small></div>
+          <div class="name">Memory <small>長期記憶</small></div>
           <div class="role">LONG-TERM CONTEXT</div>
           <p>記住偏好、背景和環境，下次不用重新交代。</p>
         </div>
@@ -560,7 +560,7 @@
       </div>
 
       <div class="callout center-callout green" data-anim="fade-up" style="max-width:860px">
-        這些模組餵給 Model 的資訊，合起來就叫 <b style="color:#5fe3a8">context（上下文）</b>——名詞會一直變，但<b style="color:#5fe3a8">位置就這幾個</b>；看懂位置，就不怕新工具。
+        Prompt、Markdown、AGENTS.md、Memory 都是在補 <b style="color:#5fe3a8">context（上下文）</b>；Skill 和 MCP 則讓 Agent 有固定流程與外部連接——看懂位置，就不怕新工具。
       </div>
     </div>
 
@@ -803,7 +803,7 @@
             <div class="n">02</div>
             <div>
               <div class="t">6 種核心模組</div>
-              <div class="sub">Agent / Skill / Markdown / AGENTS.md / 記憶 / MCP</div>
+              <div class="sub">Prompt / Skill / Markdown / AGENTS.md / Memory / MCP</div>
             </div>
           </div>
           <div class="ti">
